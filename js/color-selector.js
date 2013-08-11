@@ -66,7 +66,7 @@ function update_hex(){
                      + hexvalues((blue - blue % 16) / 16) + hexvalues(blue % 16);
 }
 
-get('blue').onchange = function(){
+get('blue').oninput = function(){
     // event fires when blue slider is being slided
     update_fromslider('blue');
 };
@@ -77,7 +77,7 @@ get('blue-value').oninput = function(){
     update_hex();
 };
 
-get('green').onchange = function(){
+get('green').oninput = function(){
     // event fires when green slider is being slided
     update_fromslider('green');
 };
@@ -91,7 +91,7 @@ get('green-value').oninput = function(){
 // event fires when user changes hex text input
 get('hex').oninput = update_fromhex;
 
-get('red').onchange = function(){
+get('red').oninput = function(){
     // event fires when red slider is being slided
     update_fromslider('red');
 };
