@@ -1,0 +1,16 @@
+#display{
+    background: #000;
+    border: 1px solid #aaa;
+    height: 250px;
+    width: 250px;
+}
+div{
+    display: inline-block;
+    line-height: 2em;
+}
+input{
+    cursor: pointer;
+    font-size: 100%;
+    text-align: center;
+    vertical-align: middle;
+}

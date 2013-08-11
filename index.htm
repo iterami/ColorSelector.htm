@@ -1,0 +1,31 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>ColorSelector</title>
+<link href=css/color-selector.css rel=stylesheet>
+
+<div style=text-align:right>
+    Red:<br>
+    Green:<br>
+    Blue:<br>
+    Hex:
+</div>
+
+<div>
+    <input id=red max=255 min=0 step=1 type=range value=0><br>
+    <input id=green max=255 min=0 step=1 type=range value=0><br>
+    <input id=blue max=255 min=0 step=1 type=range value=0><br>
+    <input id=hex maxlength=6 size=7 value=000000>
+</div>
+
+<div>
+    <input id=red-value maxlength=3 size=2 value=0><br>
+    <input id=green-value maxlength=3 size=2 value=0><br>
+    <input id=blue-value maxlength=3 size=2 value=0><br>
+    <br>
+</div>
+
+<hr>
+
+<div id=display></div>
+
+<script src=js/color-selector.js></script>
