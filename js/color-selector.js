@@ -152,3 +152,13 @@ get('red-255').oninput = function(){
     update_from255('red');
     update_hex();
 };
+
+window.onkeydown = function(e){
+    i = window.event ? event : e;
+    i = i.charCode ? i.charCode : i.keyCode;
+
+    // R: random color
+    if(i == 82){
+        random_color();
+    }
+};
