@@ -6,6 +6,20 @@ function hexvalues(i){
     return '0123456789abcdef'.charAt(i);
 }
 
+function random_color(){
+    get('hex').value = hexvalues(random_number(16))
+                     + hexvalues(random_number(16))
+                     + hexvalues(random_number(16))
+                     + hexvalues(random_number(16))
+                     + hexvalues(random_number(16))
+                     + hexvalues(random_number(16));
+    update_fromhex();
+}
+
+function random_number(i){
+    return Math.floor(Math.random() * i);
+}
+
 function update_display(){
     // updates the display square background color
     get('display').style.background = 'rgb(' + parseInt(get('red').value) + ','
