@@ -166,13 +166,13 @@ window.onkeydown = function(e){
     if(i == 66){
         random_color('blue');
 
-    // C: random hex
-    }else if(i == 67){
-        random_hex();
-
     // G: random green
     }else if(i == 71){
         random_color('green');
+
+    // H: random hex
+    }else if(i == 72){
+        random_hex();
 
     // R: random red
     }else if(i == 82){
