@@ -6,7 +6,12 @@ function hexvalues(i){
     return '0123456789abcdef'.charAt(i);
 }
 
-function random_color(){
+function random_color(color){
+    get(color).value = random_number(256);
+    update_fromslider(color);
+}
+
+function random_hex(){
     get('hex').value = hexvalues(random_number(16))
                      + hexvalues(random_number(16))
                      + hexvalues(random_number(16))
@@ -157,8 +162,20 @@ window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
 
-    // R: random color
-    if(i == 82){
-        random_color();
+    // B: random blue
+    if(i == 66){
+        random_color('blue');
+
+    // C: random hex
+    }else if(i == 67){
+        random_hex();
+
+    // G: random green
+    }else if(i == 71){
+        random_color('green');
+
+    // R: random red
+    }else if(i == 82){
+        random_color('red');
     }
 };
