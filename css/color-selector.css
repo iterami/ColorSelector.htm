@@ -15,3 +15,6 @@ input{
     vertical-align: middle;
     width: 90px;
 }
+input[type=range]{
+    width: 256px;
+}
