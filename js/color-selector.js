@@ -162,8 +162,12 @@ window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
 
+    // B: random blue
+    if(i == 66){
+        random_color('blue');
+
     // G: random green
-    if(i == 71){
+    }else if(i == 71){
         random_color('green');
 
     // H: random hex
@@ -173,9 +177,5 @@ window.onkeydown = function(e){
     // R: random red
     }else if(i == 82){
         random_color('red');
-
-    // U: random blue
-    }else if(i == 85){
-        random_color('blue');
     }
 };
