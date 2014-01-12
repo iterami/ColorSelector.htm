@@ -104,6 +104,8 @@ function update_hex(){
                      + hexvalues((blue - blue % 16) / 16) + hexvalues(blue % 16);
 }
 
+var cankeypress = 1;
+
 get('blue').oninput = function(){
     // event fires when blue slider is being slided
     update_fromslider('blue');
@@ -159,23 +161,31 @@ get('red-255').oninput = function(){
 };
 
 window.onkeydown = function(e){
-    i = window.event ? event : e;
-    i = i.charCode ? i.charCode : i.keyCode;
+    if(cankeypress){
+        i = window.event ? event : e;
+        i = i.charCode ? i.charCode : i.keyCode;
 
-    // G: random green
-    if(i == 71){
-        random_color('green');
+        // G: random green
+        if(i == 71){
+            random_color('green');
 
-    // H: random hex
-    }else if(i == 72){
-        random_hex();
+        // H: random hex
+        }else if(i == 72){
+            random_hex();
 
-    // R: random red
-    }else if(i == 82){
-        random_color('red');
+        // R: random red
+        }else if(i == 82){
+            random_color('red');
 
-    // U: random blue
-    }else if(i == 85){
-        random_color('blue');
+        // U: random blue
+        }else if(i == 85){
+            random_color('blue');
+        }
+
+        cankeypress = 0;
     }
+};
+
+window.onkeyup = function(e){
+    cankeypress = 1;
 };
