@@ -8,12 +8,14 @@ function random_color(color){
 }
 
 function random_hex(){
-    document.getElementById('hex').value = hexvalues(random_number(16))
-                     + hexvalues(random_number(16))
-                     + hexvalues(random_number(16))
-                     + hexvalues(random_number(16))
-                     + hexvalues(random_number(16))
-                     + hexvalues(random_number(16));
+    document.getElementById('hex').value =
+      hexvalues(random_number(16))
+      + hexvalues(random_number(16))
+      + hexvalues(random_number(16))
+      + hexvalues(random_number(16))
+      + hexvalues(random_number(16))
+      + hexvalues(random_number(16));
+
     update_fromhex();
 }
 
@@ -23,8 +25,8 @@ function random_number(i){
 
 function update_display(){
     // updates the display square background color
-    document.getElementById('display').style.background =
-      'rgb(' + parseInt(document.getElementById('red').value) + ','
+    document.getElementById('display').style.background = 'rgb('
+      + parseInt(document.getElementById('red').value) + ','
       + parseInt(document.getElementById('green').value) + ','
       + parseInt(document.getElementById('blue').value) + ')';
 }
@@ -32,7 +34,8 @@ function update_display(){
 function update_from1(color){
     // update value of slider when 1 text input is changed
     // validate 1 text input value isn't less than 0 or greater than 1
-    if(document.getElementById(color + '-1').value < 0 || document.getElementById(color + '-1').value > 1){
+    if(document.getElementById(color + '-1').value < 0
+      || document.getElementById(color + '-1').value > 1){
         document.getElementById(color + '-1').value = 0;
     }
 
@@ -50,8 +53,8 @@ function update_from255(color){
     // update value of slider when 255 text input is changed
     // validate 255 text input value is a number that isn't less than 0 or greater than 255
     if(isNaN(document.getElementById(color + '-255').value)
-          || document.getElementById(color + '-255').value < 0
-          || document.getElementById(color + '-255').value > 255){
+      || document.getElementById(color + '-255').value < 0
+      || document.getElementById(color + '-255').value > 255){
         document.getElementById(color + '-255').value = 0;
     }
 
@@ -62,6 +65,7 @@ function update_from255(color){
     document.getElementById(color + '-1').value = document.getElementById(color + '-255').value.length < 1
       ? 0
       : (document.getElementById(color + '-255').value / 255).toFixed(4);
+
     update_display();
 }
 
@@ -72,17 +76,20 @@ function update_fromhex(){
 
     document.getElementById('blue-255').value =
       parseInt(hexlength
-        ? document.getElementById('hex').value.substring(2, 3) + document.getElementById('hex').value.substring(2, 3)
+        ? document.getElementById('hex').value.substring(2, 3)
+          + document.getElementById('hex').value.substring(2, 3)
         : document.getElementById('hex').value.substring(4, 6),
       16);
     document.getElementById('green-255').value =
       parseInt(hexlength
-        ? document.getElementById('hex').value.substring(1, 2) + document.getElementById('hex').value.substring(1, 2)
+        ? document.getElementById('hex').value.substring(1, 2)
+          + document.getElementById('hex').value.substring(1, 2)
         : document.getElementById('hex').value.substring(2, 4),
       16);
     document.getElementById('red-255').value =
       parseInt(hexlength
-        ? document.getElementById('hex').value.substring(0, 1) + document.getElementById('hex').value.substring(0, 1)
+        ? document.getElementById('hex').value.substring(0, 1)
+          + document.getElementById('hex').value.substring(0, 1)
         : document.getElementById('hex').value.substring(0, 2),
       16);
 
@@ -107,7 +114,7 @@ function update_hex(){
     var green = Math.max(0, Math.min(parseInt(document.getElementById('green').value, 10), 255));
     var blue = Math.max(0, Math.min(parseInt(document.getElementById('blue').value, 10), 255));
     document.getElementById('hex').value =
-        hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
+      hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
       + hexvalues((green - green % 16) / 16) + hexvalues(green % 16)
       + hexvalues((blue - blue % 16) / 16) + hexvalues(blue % 16);
 }
@@ -170,23 +177,23 @@ document.getElementById('red-255').oninput = function(){
 
 window.onkeydown = function(e){
     if(cankeypress){
-        i = window.event ? event : e;
-        i = i.charCode ? i.charCode : i.keyCode;
+        var key = window.event ? event : e;
+        key = key.charCode ? key.charCode : key.keyCode;
 
         // G: random green
-        if(i == 71){
+        if(key == 71){
             random_color('green');
 
         // H: random hex
-        }else if(i == 72){
+        }else if(key == 72){
             random_hex();
 
         // R: random red
-        }else if(i == 82){
+        }else if(key == 82){
             random_color('red');
 
         // U: random blue
-        }else if(i == 85){
+        }else if(key == 85){
             random_color('blue');
         }
 
