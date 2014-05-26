@@ -23,6 +23,13 @@ function random_number(i){
     return Math.floor(Math.random() * i);
 }
 
+function reset(){
+    if(confirm('Reset?')){
+        document.getElementById('hex').value = '000000';
+        update_fromhex();
+    }
+}
+
 function update_display(){
     // updates the display square background color
     document.getElementById('display').style.background = 'rgb('
@@ -195,6 +202,10 @@ window.onkeydown = function(e){
         // U: random blue
         }else if(key == 85){
             random_color('blue');
+
+        // T: reset()
+        }else if(key == 84){
+            reset();
         }
 
         cankeypress = 0;
