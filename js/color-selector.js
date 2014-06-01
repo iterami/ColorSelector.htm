@@ -31,6 +31,10 @@ function reset(){
 }
 
 function update_display(){
+    // set hex-color value to hex value
+    document.getElementById('hex-color').value =
+      '#' + document.getElementById('hex').value;
+
     // updates the display square background color
     document.getElementById('display').style.background = 'rgb('
       + parseInt(document.getElementById('red').value) + ','
@@ -124,6 +128,7 @@ function update_hex(){
       hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
       + hexvalues((green - green % 16) / 16) + hexvalues(green % 16)
       + hexvalues((blue - blue % 16) / 16) + hexvalues(blue % 16);
+    update_display();
 }
 
 var cankeypress = 1;
@@ -164,6 +169,17 @@ document.getElementById('green-255').oninput = function(){
 
 // event fires when user changes hex text input
 document.getElementById('hex').oninput = update_fromhex;
+
+// event fires when user updates the hex-color color input
+document.getElementById('hex-color').oninput = function(){
+    document.getElementById('hex').value =
+      document.getElementById('hex-color').value.substring(
+        1,
+        7
+      );
+
+    update_fromhex();
+};
 
 document.getElementById('red').oninput = function(){
     // event fires when red slider is being slided
