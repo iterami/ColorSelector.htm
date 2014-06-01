@@ -28,4 +28,46 @@
 
 <hr>
 
+<div>
+    Background:<br>
+    Foreground:
+</div>
+
+<div>
+    <input id=wcag-background-color value=#000000><br>
+    <input id=wcag-foreground-color value=#ffffff>
+</div>
+
+<div>
+    <input id=wcag-background type=color><br>
+    <input id=wcag-foreground type=color>
+</div>
+
+<div>
+    <input onclick=wcag_set('background') type=button value="Use Generated Color [N]"><br>
+    <input onclick=wcag_set('foreground') type=button value="Use Generated Color [O]">
+</div>
+
+<div>
+    <a href=http://w3.org/TR/WCAG20 target=_blank>WCAG</a><br>
+    <input onclick=wcag_switch() type=button value="Switch [S]">
+</div>
+
+<table>
+    <tr>
+        <td id=wcag-text-normal rowspan=2>Normal Text:
+        <td>AAA
+        <td id=wcag-text-normal-aaa>
+    <tr>
+        <td>AA
+        <td id=wcag-text-normal-aa>
+    <tr>
+        <td id=wcag-text-large rowspan=2>Large Text:
+        <td>AAA
+        <td id=wcag-text-large-aaa>
+    <tr>
+        <td>AA
+        <td id=wcag-text-large-aa>
+</table>
+
 <script src=js/color-selector.js></script>

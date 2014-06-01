@@ -1,3 +1,23 @@
+function calculate_wcag(source, offset, lengthofthree){
+    var math = parseInt(
+      lengthofthree
+        ? document.getElementById(source).value[offset / 2]
+          + document.getElementById(source).value[offset / 2]
+        : document.getElementById(source).value.substring(
+          offset - 1,
+          offset + 1
+        ),
+      16
+    ) / 255;
+
+    return math <= .03928
+      ? math / 12.92
+      : Math.pow(
+        ((math + .055) / 1.055),
+        2.4
+      );
+}
+
 function hexvalues(i){
     return '0123456789abcdef'.charAt(i);
 }
@@ -25,6 +45,19 @@ function random_number(i){
 
 function reset(){
     if(confirm('Reset?')){
+        document.getElementById('wcag-background-color').value = '#000000';
+        update_wcag(
+          'wcag-background',
+          'wcag-background-color',
+          false
+        );
+        document.getElementById('wcag-foreground-color').value = '#ffffff';
+        update_wcag(
+          'wcag-foreground',
+          'wcag-foreground-color',
+          false
+        );
+
         document.getElementById('hex').value = '000000';
         update_fromhex();
     }
@@ -131,6 +164,96 @@ function update_hex(){
     update_display();
 }
 
+function update_wcag(source, source_hex, lengthofthree){
+    document.getElementById(source).value = lengthofthree
+      ? document.getElementById(source_hex).value[1]
+        + document.getElementById(source_hex).value[1]
+        + document.getElementById(source_hex).value[2]
+        + document.getElementById(source_hex).value[2]
+        + document.getElementById(source_hex).value[3]
+        + document.getElementById(source_hex).value[3]
+      : document.getElementById(source_hex).value;
+
+    var background_math =
+      (.2126 * calculate_wcag('wcag-background-color', 2, lengthofthree)
+      + .7152 * calculate_wcag('wcag-background-color', 4, lengthofthree)
+      + .0722 * calculate_wcag('wcag-background-color', 6, lengthofthree)
+    );
+    var foreground_math =
+      (.2126 * calculate_wcag('wcag-foreground-color', 2, lengthofthree)
+      + .7152 * calculate_wcag('wcag-foreground-color', 4, lengthofthree)
+      + .0722 * calculate_wcag('wcag-foreground-color', 6, lengthofthree)
+    );
+
+    var wcag_score = Math.round(
+      (Math.max(background_math, foreground_math) + .05)
+      / (Math.min(background_math, foreground_math) + .05)
+      * 10
+    ) / 10;
+
+    document.getElementById('wcag-text-normal-aaa').innerHTML =
+      '<b>' + wcag_score + '</b> / 7.0 = '
+      + (wcag_score > 7
+        ? 'Passed'
+        : 'Failed'
+      );
+    document.getElementById('wcag-text-normal-aa').innerHTML =
+      '<b>' + wcag_score + '</b> / 4.5 = '
+      + (wcag_score > 4.5
+        ? 'Passed'
+        : 'Failed'
+      );
+    document.getElementById('wcag-text-large-aaa').innerHTML =
+      '<b>' + wcag_score + '</b> / 4.5 = '
+      + (wcag_score > 4.5
+        ? 'Passed'
+        : 'Failed'
+      );
+    document.getElementById('wcag-text-large-aa').innerHTML =
+      '<b>' + wcag_score + '</b> / 3.0 = '
+      + (wcag_score > 3
+        ? 'Passed'
+        : 'Failed'
+      );
+
+    document.getElementById('wcag-text-normal').style.backgroundColor =
+      document.getElementById('wcag-background-color').value;
+    document.getElementById('wcag-text-normal').style.color =
+      document.getElementById('wcag-foreground-color').value;
+    document.getElementById('wcag-text-large').style.backgroundColor =
+      document.getElementById('wcag-background-color').value;
+    document.getElementById('wcag-text-large').style.color =
+      document.getElementById('wcag-foreground-color').value;
+}
+
+function wcag_set(target){
+    document.getElementById('wcag-' + target + '-color').value =
+      '#' + document.getElementById('hex').value;
+    update_wcag(
+      'wcag-' + target,
+      'wcag-' + target + '-color',
+      document.getElementById('wcag-' + target + '-color').value.length === 4
+    );
+}
+
+function wcag_switch(){
+    var temp = document.getElementById('wcag-background-color').value;
+    document.getElementById('wcag-background-color').value = document.getElementById('wcag-foreground-color').value;
+    document.getElementById('wcag-foreground-color').value = temp;
+
+    update_wcag(
+      'wcag-background',
+      'wcag-background-color',
+      document.getElementById('wcag-background-color').value.length === 4
+    );
+
+    update_wcag(
+      'wcag-foreground',
+      'wcag-foreground-color',
+      document.getElementById('wcag-foreground-color').value.length === 4
+    );
+}
+
 var cankeypress = 1;
 
 document.getElementById('blue').oninput = function(){
@@ -198,6 +321,49 @@ document.getElementById('red-255').oninput = function(){
     update_hex();
 };
 
+document.getElementById('wcag-background-color').oninput = function(){
+    update_wcag(
+      'wcag-background',
+      'wcag-background-color',
+      document.getElementById('wcag-background-color').value.length === 4
+    );
+};
+
+document.getElementById('wcag-background').oninput = function(){
+    update_wcag(
+      'wcag-background-color',
+      'wcag-background',
+      0
+    );
+};
+
+document.getElementById('wcag-foreground-color').oninput = function(){
+    update_wcag(
+      'wcag-foreground',
+      'wcag-foreground-color',
+      document.getElementById('wcag-foreground-color').value.length === 4
+    );
+};
+
+document.getElementById('wcag-foreground').oninput = function(){
+    update_wcag(
+      'wcag-foreground-color',
+      'wcag-foreground',
+      0
+    );
+};
+
+update_wcag(
+  'wcag-background',
+  'wcag-background-color',
+  false
+);
+update_wcag(
+  'wcag-foreground',
+  'wcag-foreground-color',
+  false
+);
+
 window.onkeydown = function(e){
     if(cankeypress){
         var key = window.event ? event : e;
@@ -211,17 +377,29 @@ window.onkeydown = function(e){
         }else if(key == 72){
             random_hex();
 
+        // N: set wcag background color
+        }else if(key == 78){
+            wcag_set('background');
+
+        // O: set wcag foreground color
+        }else if(key == 79){
+            wcag_set('foreground');
+
         // R: random red
         }else if(key == 82){
             random_color('red');
 
-        // U: random blue
-        }else if(key == 85){
-            random_color('blue');
+        // S: switch wcag background and foreground
+        }else if(key == 83){
+            wcag_switch();
 
         // T: reset()
         }else if(key == 84){
             reset();
+
+        // U: random blue
+        }else if(key == 85){
+            random_color('blue');
         }
 
         cankeypress = 0;
