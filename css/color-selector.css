@@ -13,7 +13,6 @@ input{
     font-size: 100%;
     text-align: center;
     vertical-align: middle;
-    width: 90px;
 }
 input[type=range]{
     width: 256px;
