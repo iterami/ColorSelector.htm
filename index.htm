@@ -3,7 +3,7 @@
 <title>ColorSelector</title>
 <link href=css/color-selector.css rel=stylesheet>
 
-<div style=text-align:right>
+<div class=right>
     <input onclick=random_color('red') type=button value="Red [R]"><br>
     <input onclick=random_color('green') type=button value="Green [G]"><br>
     <input onclick=random_color('blue') type=button value="Blue [U]"><br>
@@ -17,7 +17,7 @@
     <input onclick=reset() type=button value="Reset [T]">
 </div>
 
-<div>
+<div class=right>
     <input id=red-255 maxlength=3 value=0><input id=red-1 maxlength=6 value=0.0000><br>
     <input id=green-255 maxlength=3 value=0><input id=green-1 maxlength=6 value=0.0000><br>
     <input id=blue-255 maxlength=3 value=0><input id=blue-1 maxlength=6 value=0.0000><br>
@@ -28,7 +28,7 @@
 
 <hr>
 
-<div>
+<div class=right>
     Background:<br>
     Foreground:
 </div>
@@ -62,7 +62,7 @@
         <td>AA
         <td id=wcag-text-normal-aa>
     <tr>
-        <td id=wcag-text-large rowspan=2>Large Text:
+        <td class=right id=wcag-text-large rowspan=2>Large Text:
         <td>AAA
         <td id=wcag-text-large-aaa>
     <tr>

@@ -9,11 +9,13 @@ div{
     line-height: 2em;
 }
 input{
-    cursor: pointer;
     font-size: 100%;
     text-align: center;
     vertical-align: middle;
 }
 input[type=range]{
     width: 256px;
+}
+.right{
+    text-align: right;
 }
