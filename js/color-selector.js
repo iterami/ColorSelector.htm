@@ -18,6 +18,170 @@ function calculate_wcag(source, offset, lengthofthree){
       );
 }
 
+// TODO: improve clarity
+function darken_lighten(change){
+    var hexlength = document.getElementById('hex').value.length === 3;
+
+    // get colors
+    var blue =
+      (eval(
+        parseInt(
+          hexlength
+            ? document.getElementById('hex').value.substring(2, 3)
+              + document.getElementById('hex').value.substring(2, 3)
+            : document.getElementById('hex').value.substring(4, 6),
+          16
+        )
+      ) / 51) * .2;
+    var green =
+      (eval(
+        parseInt(
+          hexlength
+            ? document.getElementById('hex').value.substring(1, 2)
+              + document.getElementById('hex').value.substring(1, 2)
+            : document.getElementById('hex').value.substring(2, 4),
+          16
+        )
+      ) / 51) * .2;
+    var red =
+      (eval(
+        parseInt(
+          hexlength
+            ? document.getElementById('hex').value.substring(0, 1)
+              + document.getElementById('hex').value.substring(0, 1)
+            : document.getElementById('hex').value.substring(0, 2),
+          16
+        )
+      ) / 51) * .2;
+
+    var Max = 0;
+    var Min = 0;
+
+    Max = eval(eval(red) >= eval(green)
+      ? red
+      : green
+    );
+    if(eval(blue) > eval(Max)){
+        Max = eval(blue);
+    }
+    Min = eval(eval(red) <= eval(green)
+      ? red
+      : green
+    );
+    if(eval(blue) < eval(Min)){
+        Min = eval(blue);
+    }
+
+    var H = 0;
+    var L = Math.round(
+      (eval(Max) + eval(Min)) * 50
+    );
+    var S = 0;
+
+    // luminosity
+    L = (L + (change ? 6.25 : -6.25)) / 100;
+    if(L > 1){
+        L = 1;
+
+    }else if(L < 0){
+        L = 0;
+    }
+
+    if(eval(Max) != eval(Min)){
+        var dx = (eval(Max) - eval(Min));
+        if(red == Max){
+            H = (eval(green) - eval(blue)) / dx;
+        }
+        if(green == Max){
+            H = 2 + (eval(blue) - eval(red)) / dx;
+        }
+        if(blue == Max){
+            H = 4 + (eval(red) - eval(green)) / dx;
+        }
+        S = dx
+          / (L<.5
+            ? eval(Max) + eval(Min)
+            : 2 - eval(Max) - eval(Min)
+          );
+    }
+
+    H = Math.round(H * 60);
+    if(H < 0){
+        H += 360;
+
+    }else if(H >= 360){
+        H -= 360;
+    }
+
+    var temp = L < .5
+      ? L * (1 + S)
+      : L + S - (L * S);
+    var temp2 = 2 * L - temp;
+    red = Math.round(
+      darken_lighten_math(
+        temp2,
+        temp,
+        H + 120
+      ) * 255
+    );
+    green = Math.round(
+      darken_lighten_math(
+        temp2,
+        temp,
+        H
+      ) * 255
+    );
+    blue = Math.round(
+      darken_lighten_math(
+        temp2,
+        temp,
+        H - 120
+      ) * 255
+    );
+
+    document.getElementById('red-255').value =
+      (red < 0 || red > 255)
+        ? 0
+        : red;
+    document.getElementById('green-255').value =
+      (green < 0 || green > 255)
+        ? 0
+        : green;
+    document.getElementById('blue-255').value =
+      (blue < 0 || blue > 255)
+        ? 0
+        : blue;
+
+    update_from255('blue');
+    update_from255('green');
+    update_from255('red');
+
+    update_hex();
+}
+
+// TODO: improve clarity
+function darken_lighten_math(d0, d1, d2){
+    if(d2 > 360){
+        d2 = d2 - 360;
+
+    }else if(d2 < 0){
+        d2 = d2 + 360;
+    }
+
+    if(d2 < 60){
+        return d0 + (d1 - d0) * d2 / 60;
+
+    }else if(d2 < 180){
+        return d1;
+
+    }else if(d2 < 240){
+        return d0 + (d1 - d0) * (240 - d2) / 60;
+
+    }else{
+        return d0;
+    }
+}
+
 function hexvalues(i){
     return '0123456789abcdef'.charAt(i);
 }
@@ -376,6 +540,14 @@ window.onkeydown = function(e){
         // H: random hex
         }else if(key == 72){
             random_hex();
+
+        // K: darken hex
+        }else if(key == 75){
+            darken_lighten(0);
+
+        // L: lighten hex
+        }else if(key == 76){
+            darken_lighten(1);
 
         // N: set wcag background color
         }else if(key == 78){
