@@ -240,33 +240,33 @@ function update_display(){
 }
 
 function update_from1(color){
-    // update value of slider when 1 text input is changed
-    // validate 1 text input value isn't less than 0 or greater than 1
+    // update value of slider when 0-1 text input is changed
+    // validate 0-1 text input value isn't less than 0 or greater than 1
     if(document.getElementById(color + '-1').value < 0
       || document.getElementById(color + '-1').value > 1){
         document.getElementById(color + '-1').value = 0;
     }
 
-    // if 1 text input value is a number, proceed
+    // if 0-1 text input value is a number, proceed
     if(!isNaN(document.getElementById(color + '-1').value)){
         // update the sliders, color value out of 255, and the display
         document.getElementById(color).value = Math.round(document.getElementById(color + '-1').value * 255);
         document.getElementById(color + '-255').value = Math.round(document.getElementById(color + '-1').value * 255);
         update_display();
     }
-    // if 1 text input is not a number, don't do anything in case users are entering '.'
+    // if 0-1 text input is not a number, don't do anything in case users are entering '.'
 }
 
 function update_from255(color){
-    // update value of slider when 255 text input is changed
-    // validate 255 text input value is a number that isn't less than 0 or greater than 255
+    // update value of slider when 0-255 text input is changed
+    // validate 0-255 text input value is a number that isn't less than 0 or greater than 255
     if(isNaN(document.getElementById(color + '-255').value)
       || document.getElementById(color + '-255').value < 0
       || document.getElementById(color + '-255').value > 255){
         document.getElementById(color + '-255').value = 0;
     }
 
-    // if 255 text input length is zero, just use color value of 0 instead of messing with user input
+    // if 0-255 text input length is 0, just use color value of 0 instead of messing with user input
     document.getElementById(color).value = document.getElementById(color + '-255').value.length < 1
       ? 0
       : document.getElementById(color + '-255').value;
