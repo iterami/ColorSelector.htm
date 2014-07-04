@@ -312,6 +312,7 @@ function update_fromslider(color){
     // update values of hex and text inputs when slider is slided
     document.getElementById(color + '-1').value = (document.getElementById(color).value / 255).toFixed(4);
     document.getElementById(color + '-255').value = document.getElementById(color).value;
+
     update_display();
     update_hex();
 }
@@ -321,10 +322,12 @@ function update_hex(){
     var red = Math.max(0, Math.min(parseInt(document.getElementById('red').value, 10), 255));
     var green = Math.max(0, Math.min(parseInt(document.getElementById('green').value, 10), 255));
     var blue = Math.max(0, Math.min(parseInt(document.getElementById('blue').value, 10), 255));
+
     document.getElementById('hex').value =
       hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
       + hexvalues((green - green % 16) / 16) + hexvalues(green % 16)
       + hexvalues((blue - blue % 16) / 16) + hexvalues(blue % 16);
+
     update_display();
 }
 
@@ -393,6 +396,7 @@ function update_wcag(source, source_hex, lengthofthree){
 function wcag_set(target){
     document.getElementById('wcag-' + target + '-color').value =
       '#' + document.getElementById('hex').value;
+
     update_wcag(
       'wcag-' + target,
       'wcag-' + target + '-color',
