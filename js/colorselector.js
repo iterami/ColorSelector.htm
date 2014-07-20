@@ -187,24 +187,20 @@ function hexvalues(i){
 }
 
 function random_color(color){
-    document.getElementById(color).value = random_number(256);
+    document.getElementById(color).value = Math.floor(Math.random() * 256);
     update_fromslider(color);
 }
 
 function random_hex(){
     document.getElementById('hex').value =
-      hexvalues(random_number(16))
-      + hexvalues(random_number(16))
-      + hexvalues(random_number(16))
-      + hexvalues(random_number(16))
-      + hexvalues(random_number(16))
-      + hexvalues(random_number(16));
+      hexvalues(Math.floor(Math.random() * 16))
+      + hexvalues(Math.floor(Math.random() * 16))
+      + hexvalues(Math.floor(Math.random() * 16))
+      + hexvalues(Math.floor(Math.random() * 16))
+      + hexvalues(Math.floor(Math.random() * 16))
+      + hexvalues(Math.floor(Math.random() * 16));
 
     update_fromhex();
-}
-
-function random_number(i){
-    return Math.floor(Math.random() * i);
 }
 
 function reset(){
