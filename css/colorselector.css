@@ -1,3 +1,13 @@
+a{
+    color: #4c4;
+}
+a:hover{
+    color: #777;
+}
+body{
+    background: #000;
+    color: #aaa;
+}
 #display{
     background: #000;
     border: 1px solid #aaa;
@@ -9,6 +19,8 @@ div{
     line-height: 2em;
 }
 input{
+    background: #000;
+    color: #aaa;
     font-size: 100%;
     text-align: center;
     vertical-align: middle;
