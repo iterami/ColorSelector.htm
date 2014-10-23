@@ -18,11 +18,11 @@ function calculate_wcag(source, offset, lengthofthree){
       );
 }
 
-// TODO: improve clarity
+// TODO: Improve clarity.
 function darken_lighten(change){
     var hexlength = document.getElementById('hex').value.length === 3;
 
-    // get colors
+    // Get colors.
     var blue =
       (eval(
         parseInt(
@@ -78,7 +78,7 @@ function darken_lighten(change){
     );
     var S = 0;
 
-    // luminosity
+    // Luminosity calculations.
     L = (L + (change ? 6.25 : -6.25)) / 100;
     if(L > 1){
         L = 1;
@@ -159,7 +159,7 @@ function darken_lighten(change){
     update_hex();
 }
 
-// TODO: improve clarity
+// TODO: Improve clarity.
 function darken_lighten_math(d0, d1, d2){
     if(d2 > 360){
         d2 = d2 - 360;
@@ -224,11 +224,11 @@ function reset(){
 }
 
 function update_display(){
-    // set hex-color value to hex value
+    // Set hex-color value to hex value.
     document.getElementById('hex-color').value =
       '#' + document.getElementById('hex').value;
 
-    // updates the display square background color
+    // Updates the display square background color.
     document.getElementById('display').style.background = 'rgb('
       + parseInt(document.getElementById('red').value) + ','
       + parseInt(document.getElementById('green').value) + ','
@@ -236,33 +236,33 @@ function update_display(){
 }
 
 function update_from1(color){
-    // update value of slider when 0-1 text input is changed
-    // validate 0-1 text input value isn't less than 0 or greater than 1
+    // Update value of slider when 0-1 text input is changed
+    //   and validate 0-1 text input value isn't less than 0 or greater than 1.
     if(document.getElementById(color + '-1').value < 0
       || document.getElementById(color + '-1').value > 1){
         document.getElementById(color + '-1').value = 0;
     }
 
-    // if 0-1 text input value is a number, proceed
+    // If 0-1 text input value is a number, proceed.
     if(!isNaN(document.getElementById(color + '-1').value)){
-        // update the sliders, color value out of 255, and the display
+        // Update the sliders, color value out of 255, and the display.
         document.getElementById(color).value = Math.round(document.getElementById(color + '-1').value * 255);
         document.getElementById(color + '-255').value = Math.round(document.getElementById(color + '-1').value * 255);
         update_display();
     }
-    // if 0-1 text input is not a number, don't do anything in case users are entering '.'
+    // If 0-1 text input is not a number, don't do anything in case users are entering '.',
 }
 
 function update_from255(color){
-    // update value of slider when 0-255 text input is changed
-    // validate 0-255 text input value is a number that isn't less than 0 or greater than 255
+    // Update value of slider when 0-255 text input is changed
+    //   and validate 0-255 text input value is a number that isn't less than 0 or greater than 255.
     if(isNaN(document.getElementById(color + '-255').value)
       || document.getElementById(color + '-255').value < 0
       || document.getElementById(color + '-255').value > 255){
         document.getElementById(color + '-255').value = 0;
     }
 
-    // if 0-255 text input length is 0, just use color value of 0 instead of messing with user input
+    // If 0-255 text input length is 0, just use color value of 0 instead of messing with user input.
     document.getElementById(color).value = document.getElementById(color + '-255').value.length < 1
       ? 0
       : document.getElementById(color + '-255').value;
@@ -274,8 +274,8 @@ function update_from255(color){
 }
 
 function update_fromhex(){
-    // update values of slider/text inputs when hex input is changed
-    // hex length of 3 is valid
+    // Update values of slider/text inputs when hex input is changed.
+    // Hex length of 3 is valid.
     var hexlength = document.getElementById('hex').value.length === 3;
 
     document.getElementById('blue-255').value =
@@ -305,7 +305,7 @@ function update_fromhex(){
 }
 
 function update_fromslider(color){
-    // update values of hex and text inputs when slider is slided
+    // Update values of hex and text inputs when slider is slided.
     document.getElementById(color + '-1').value = (document.getElementById(color).value / 255).toFixed(4);
     document.getElementById(color + '-255').value = document.getElementById(color).value;
 
@@ -314,7 +314,7 @@ function update_fromslider(color){
 }
 
 function update_hex(){
-    // update the hex value based on slider values
+    // Update the hex value based on slider values.
     var red = Math.max(0, Math.min(parseInt(document.getElementById('red').value, 10), 255));
     var green = Math.max(0, Math.min(parseInt(document.getElementById('green').value, 10), 255));
     var blue = Math.max(0, Math.min(parseInt(document.getElementById('blue').value, 10), 255));
@@ -421,43 +421,43 @@ function wcag_switch(){
 var cankeypress = 1;
 
 document.getElementById('blue').oninput = function(){
-    // event fires when blue slider is being slided
+    // Event fires when blue slider is being slided.
     update_fromslider('blue');
 };
 
 document.getElementById('blue-1').oninput = function(){
-    // event fires when user changes blue 1 text input
+    // Event fires when user changes blue 1 text input.
     update_from1('blue');
     update_hex();
 };
 
 document.getElementById('blue-255').oninput = function(){
-    // event fires when user changes blue 255 text input
+    // Event fires when user changes blue 255 text input.
     update_from255('blue');
     update_hex();
 };
 
 document.getElementById('green').oninput = function(){
-    // event fires when green slider is being slided
+    // Event fires when green slider is being slided.
     update_fromslider('green');
 };
 
 document.getElementById('green-1').oninput = function(){
-    // event fires when user changes green 1 text input
+    // Event fires when user changes green 1 text input.
     update_from1('green');
     update_hex();
 };
 
 document.getElementById('green-255').oninput = function(){
-    // event fires when user changes green 255 text input
+    // Event fires when user changes green 255 text input.
     update_from255('green');
     update_hex();
 };
 
-// event fires when user changes hex text input
+// Event fires when user changes hex text input.
 document.getElementById('hex').oninput = update_fromhex;
 
-// event fires when user updates the hex-color color input
+// Event fires when user updates the hex-color color input.
 document.getElementById('hex-color').oninput = function(){
     document.getElementById('hex').value =
       document.getElementById('hex-color').value.substring(
@@ -469,18 +469,18 @@ document.getElementById('hex-color').oninput = function(){
 };
 
 document.getElementById('red').oninput = function(){
-    // event fires when red slider is being slided
+    // Event fires when red slider is being slided.
     update_fromslider('red');
 };
 
 document.getElementById('red-1').oninput = function(){
-    // event fires when user changes red 1 text input
+    // Event fires when user changes red 1 text input.
     update_from1('red');
     update_hex();
 };
 
 document.getElementById('red-255').oninput = function(){
-    // event fires when user changes red 255 text input
+    // Event fires when user changes red 255 text input.
     update_from255('red');
     update_hex();
 };
@@ -533,43 +533,43 @@ window.onkeydown = function(e){
         var key = window.event ? event : e;
         key = key.charCode ? key.charCode : key.keyCode;
 
-        // G: random green
+        // G: random green.
         if(key == 71){
             random_color('green');
 
-        // H: random hex
+        // H: random hex.
         }else if(key == 72){
             random_hex();
 
-        // K: darken hex
+        // K: darken hex.
         }else if(key == 75){
             darken_lighten(0);
 
-        // L: lighten hex
+        // L: lighten hex.
         }else if(key == 76){
             darken_lighten(1);
 
-        // N: set wcag background color
+        // N: set wcag background color.
         }else if(key == 78){
             wcag_set('background');
 
-        // O: set wcag foreground color
+        // O: set wcag foreground color.
         }else if(key == 79){
             wcag_set('foreground');
 
-        // R: random red
+        // R: random red.
         }else if(key == 82){
             random_color('red');
 
-        // S: switch wcag background and foreground
+        // S: switch wcag background and foreground.
         }else if(key == 83){
             wcag_switch();
 
-        // T: reset()
+        // T: reset().
         }else if(key == 84){
             reset();
 
-        // U: random blue
+        // U: random blue.
         }else if(key == 85){
             random_color('blue');
         }
