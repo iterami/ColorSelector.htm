@@ -204,23 +204,25 @@ function random_hex(){
 }
 
 function reset(){
-    if(confirm('Reset?')){
-        document.getElementById('wcag-background-color').value = '#000000';
-        update_wcag(
-          'wcag-background',
-          'wcag-background-color',
-          false
-        );
-        document.getElementById('wcag-foreground-color').value = '#ffffff';
-        update_wcag(
-          'wcag-foreground',
-          'wcag-foreground-color',
-          false
-        );
-
-        document.getElementById('hex').value = '000000';
-        update_fromhex();
+    if(!confirm('Reset?')){
+        return;
     }
+
+    document.getElementById('wcag-background-color').value = '#000000';
+    update_wcag(
+      'wcag-background',
+      'wcag-background-color',
+      false
+    );
+    document.getElementById('wcag-foreground-color').value = '#ffffff';
+    update_wcag(
+      'wcag-foreground',
+      'wcag-foreground-color',
+      false
+    );
+
+    document.getElementById('hex').value = '000000';
+    update_fromhex();
 }
 
 function update_display(){
