@@ -204,7 +204,7 @@ function random_hex(){
 }
 
 function reset(){
-    if(!confirm('Reset?')){
+    if(!confirm('Reset colors?')){
         return;
     }
 
