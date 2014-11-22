@@ -532,8 +532,7 @@ update_wcag(
 
 window.onkeydown = function(e){
     if(cankeypress){
-        var key = window.event ? event : e;
-        key = key.charCode ? key.charCode : key.keyCode;
+        var key = e.keyCode || e.which;
 
         // G: random green.
         if(key == 71){
