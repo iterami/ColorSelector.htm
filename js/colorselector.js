@@ -18,7 +18,6 @@ function calculate_wcag(source, offset, lengthofthree){
       );
 }
 
-// TODO: Improve clarity.
 function darken_lighten(change){
     var hexlength = document.getElementById('hex').value.length === 3;
 
@@ -159,7 +158,6 @@ function darken_lighten(change){
     update_hex();
 }
 
-// TODO: Improve clarity.
 function darken_lighten_math(d0, d1, d2){
     if(d2 > 360){
         d2 = d2 - 360;
