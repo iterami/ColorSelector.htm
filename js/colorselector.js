@@ -418,8 +418,6 @@ function wcag_switch(){
     );
 }
 
-var cankeypress = 1;
-
 document.getElementById('blue').oninput = function(){
     // Event fires when blue slider is being slided.
     update_fromslider('blue');
@@ -529,54 +527,46 @@ update_wcag(
 );
 
 window.onkeydown = function(e){
-    if(cankeypress){
-        var key = e.keyCode || e.which;
+    var key = e.keyCode || e.which;
 
-        // G: random green.
-        if(key == 71){
-            random_color('green');
+    // G: random green.
+    if(key == 71){
+        random_color('green');
 
-        // H: random hex.
-        }else if(key == 72){
-            random_hex();
+    // H: random hex.
+    }else if(key == 72){
+        random_hex();
 
-        // K: darken hex.
-        }else if(key == 75){
-            darken_lighten(0);
+    // K: darken hex.
+    }else if(key == 75){
+        darken_lighten(0);
 
-        // L: lighten hex.
-        }else if(key == 76){
-            darken_lighten(1);
+    // L: lighten hex.
+    }else if(key == 76){
+        darken_lighten(1);
 
-        // N: set wcag background color.
-        }else if(key == 78){
-            wcag_set('background');
+    // N: set wcag background color.
+    }else if(key == 78){
+        wcag_set('background');
 
-        // O: set wcag foreground color.
-        }else if(key == 79){
-            wcag_set('foreground');
+    // O: set wcag foreground color.
+    }else if(key == 79){
+        wcag_set('foreground');
 
-        // R: random red.
-        }else if(key == 82){
-            random_color('red');
+    // R: random red.
+    }else if(key == 82){
+        random_color('red');
 
-        // S: switch wcag background and foreground.
-        }else if(key == 83){
-            wcag_switch();
+    // S: switch wcag background and foreground.
+    }else if(key == 83){
+        wcag_switch();
 
-        // T: reset().
-        }else if(key == 84){
-            reset();
+    // T: reset().
+    }else if(key == 84){
+        reset();
 
-        // U: random blue.
-        }else if(key == 85){
-            random_color('blue');
-        }
-
-        cankeypress = 0;
+    // U: random blue.
+    }else if(key == 85){
+        random_color('blue');
     }
-};
-
-window.onkeyup = function(e){
-    cankeypress = 1;
 };
