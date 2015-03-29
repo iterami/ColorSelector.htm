@@ -202,7 +202,7 @@ function random_hex(){
 }
 
 function reset(){
-    if(!confirm('Reset colors?')){
+    if(!window.confirm('Reset colors?')){
         return;
     }
 
