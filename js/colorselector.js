@@ -515,17 +515,6 @@ document.getElementById('wcag-foreground').oninput = function(){
     );
 };
 
-update_wcag(
-  'wcag-background',
-  'wcag-background-color',
-  false
-);
-update_wcag(
-  'wcag-foreground',
-  'wcag-foreground-color',
-  false
-);
-
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
 
@@ -569,4 +558,17 @@ window.onkeydown = function(e){
     }else if(key == 85){
         random_color('blue');
     }
+};
+
+window.onload = function(e){
+    update_wcag(
+      'wcag-background',
+      'wcag-background-color',
+      false
+    );
+    update_wcag(
+      'wcag-foreground',
+      'wcag-foreground-color',
+      false
+    );
 };
