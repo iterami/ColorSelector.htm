@@ -418,40 +418,6 @@ function wcag_switch(){
     );
 }
 
-document.getElementById('blue').oninput = function(){
-    // Event fires when blue slider is being slided.
-    update_fromslider('blue');
-};
-
-document.getElementById('blue-1').oninput = function(){
-    // Event fires when user changes blue 1 text input.
-    update_from1('blue');
-    update_hex();
-};
-
-document.getElementById('blue-255').oninput = function(){
-    // Event fires when user changes blue 255 text input.
-    update_from255('blue');
-    update_hex();
-};
-
-document.getElementById('green').oninput = function(){
-    // Event fires when green slider is being slided.
-    update_fromslider('green');
-};
-
-document.getElementById('green-1').oninput = function(){
-    // Event fires when user changes green 1 text input.
-    update_from1('green');
-    update_hex();
-};
-
-document.getElementById('green-255').oninput = function(){
-    // Event fires when user changes green 255 text input.
-    update_from255('green');
-    update_hex();
-};
-
 // Event fires when user changes hex text input.
 document.getElementById('hex').oninput = update_fromhex;
 
@@ -464,23 +430,6 @@ document.getElementById('hex-color').oninput = function(){
       );
 
     update_fromhex();
-};
-
-document.getElementById('red').oninput = function(){
-    // Event fires when red slider is being slided.
-    update_fromslider('red');
-};
-
-document.getElementById('red-1').oninput = function(){
-    // Event fires when user changes red 1 text input.
-    update_from1('red');
-    update_hex();
-};
-
-document.getElementById('red-255').oninput = function(){
-    // Event fires when user changes red 255 text input.
-    update_from255('red');
-    update_hex();
 };
 
 document.getElementById('wcag-background-color').oninput = function(){
@@ -571,4 +520,31 @@ window.onload = function(e){
       'wcag-foreground-color',
       false
     );
+
+    var colors = [
+      'blue',
+      'green',
+      'red',
+    ];
+
+    for(var color in colors){
+        document.getElementById(colors[color]).oninput = function(){
+            // Event fires when colors[color] slider is being slided.
+            update_fromslider(this.id);
+        };
+
+        document.getElementById(colors[color] + '-1').oninput = function(){
+            var id = this.id;
+            // Event fires when user changes colors[color] 1 text input.
+            update_from1(id.substring(0, id.indexOf('-')));
+            update_hex();
+        };
+
+        document.getElementById(colors[color] + '-255').oninput = function(){
+            var id = this.id;
+            // Event fires when user changes colors[color] 255 text input.
+            update_from255(id.substring(0, id.indexOf('-')));
+            update_hex();
+        };
+    }
 };
