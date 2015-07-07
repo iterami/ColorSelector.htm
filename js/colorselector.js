@@ -1,3 +1,5 @@
+'use strict';
+
 function calculate_wcag(source, offset, lengthofthree){
     var math = parseInt(
       lengthofthree
