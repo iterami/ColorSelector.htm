@@ -331,8 +331,7 @@ function update_hex(){
 
 function update_wcag(source, source_hex, lengthofthree){
     document.getElementById(source).value = lengthofthree
-      ? '#'
-        + document.getElementById(source_hex).value[1]
+      ? document.getElementById(source_hex).value[1]
         + document.getElementById(source_hex).value[1]
         + document.getElementById(source_hex).value[2]
         + document.getElementById(source_hex).value[2]
@@ -513,6 +512,8 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(e){
+    random_hex();
+
     update_wcag(
       'wcag-background',
       'wcag-background-color',
