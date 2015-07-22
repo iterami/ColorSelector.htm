@@ -208,13 +208,13 @@ function reset(){
         return;
     }
 
-    document.getElementById('wcag-background-color').value = '#000000';
+    document.getElementById('wcag-background-color').value = '000000';
     update_wcag(
       'wcag-background',
       'wcag-background-color',
       false
     );
-    document.getElementById('wcag-foreground-color').value = '#ffffff';
+    document.getElementById('wcag-foreground-color').value = 'ffffff';
     update_wcag(
       'wcag-foreground',
       'wcag-foreground-color',
@@ -330,14 +330,16 @@ function update_hex(){
 }
 
 function update_wcag(source, source_hex, lengthofthree){
-    document.getElementById(source).value = lengthofthree
-      ? document.getElementById(source_hex).value[1]
-        + document.getElementById(source_hex).value[1]
-        + document.getElementById(source_hex).value[2]
-        + document.getElementById(source_hex).value[2]
-        + document.getElementById(source_hex).value[3]
-        + document.getElementById(source_hex).value[3]
-      : document.getElementById(source_hex).value;
+    document.getElementById(source).value = '#'
+      + (lengthofthree
+        ? document.getElementById(source_hex).value[1]
+          + document.getElementById(source_hex).value[1]
+          + document.getElementById(source_hex).value[2]
+          + document.getElementById(source_hex).value[2]
+          + document.getElementById(source_hex).value[3]
+          + document.getElementById(source_hex).value[3]
+        : document.getElementById(source_hex).value
+      );
 
     var background_math =
       (.2126 * calculate_wcag('wcag-background-color', 2, lengthofthree)
