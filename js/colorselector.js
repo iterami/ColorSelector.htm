@@ -384,13 +384,13 @@ function update_wcag(source, source_hex, lengthofthree){
       );
 
     document.getElementById('wcag-text-normal').style.backgroundColor =
-      document.getElementById('wcag-background-color').value;
+      '#' + document.getElementById('wcag-background-color').value;
     document.getElementById('wcag-text-normal').style.color =
-      document.getElementById('wcag-foreground-color').value;
+      '#' + document.getElementById('wcag-foreground-color').value;
     document.getElementById('wcag-text-large').style.backgroundColor =
-      document.getElementById('wcag-background-color').value;
+      '#' + document.getElementById('wcag-background-color').value;
     document.getElementById('wcag-text-large').style.color =
-      document.getElementById('wcag-foreground-color').value;
+      '#' + document.getElementById('wcag-foreground-color').value;
 }
 
 function wcag_set(target){
