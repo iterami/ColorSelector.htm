@@ -90,13 +90,13 @@ function darken_lighten(change){
 
     if(eval(Max) != eval(Min)){
         var dx = (eval(Max) - eval(Min));
-        if(red == Max){
+        if(red === Max){
             H = (eval(green) - eval(blue)) / dx;
         }
-        if(green == Max){
+        if(green === Max){
             H = 2 + (eval(blue) - eval(red)) / dx;
         }
-        if(blue == Max){
+        if(blue === Max){
             H = 4 + (eval(red) - eval(green)) / dx;
         }
         S = dx
@@ -471,43 +471,43 @@ window.onkeydown = function(e){
     var key = e.keyCode || e.which;
 
     // G: random green.
-    if(key == 71){
+    if(key === 71){
         random_color('green');
 
     // H: random hex.
-    }else if(key == 72){
+    }else if(key === 72){
         random_hex();
 
     // K: darken hex.
-    }else if(key == 75){
+    }else if(key === 75){
         darken_lighten(0);
 
     // L: lighten hex.
-    }else if(key == 76){
+    }else if(key === 76){
         darken_lighten(1);
 
     // N: set wcag background color.
-    }else if(key == 78){
+    }else if(key === 78){
         wcag_set('background');
 
     // O: set wcag foreground color.
-    }else if(key == 79){
+    }else if(key === 79){
         wcag_set('foreground');
 
     // R: random red.
-    }else if(key == 82){
+    }else if(key === 82){
         random_color('red');
 
     // S: switch wcag background and foreground.
-    }else if(key == 83){
+    }else if(key === 83){
         wcag_switch();
 
     // T: reset().
-    }else if(key == 84){
+    }else if(key === 84){
         reset();
 
     // U: random blue.
-    }else if(key == 85){
+    }else if(key === 85){
         random_color('blue');
     }
 };
