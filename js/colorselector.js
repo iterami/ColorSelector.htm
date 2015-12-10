@@ -1,11 +1,11 @@
 'use strict';
 
 function calculate_wcag(source, offset, lengthofthree){
+    var source = document.getElementById(source).value;
     var math = parseInt(
       lengthofthree
-        ? document.getElementById(source).value[offset / 2]
-          + document.getElementById(source).value[offset / 2]
-        : document.getElementById(source).value.substring(
+        ? source[offset / 2] + source[offset / 2]
+        : source.substring(
           offset - 1,
           offset + 1
         ),
@@ -21,16 +21,16 @@ function calculate_wcag(source, offset, lengthofthree){
 }
 
 function darken_lighten(change){
-    var hexlength = document.getElementById('hex').value.length === 3;
+    var hex = document.getElementById('hex').value;
+    var hexlength = hex.length === 3;
 
     // Get colors.
     var blue =
       (eval(
         parseInt(
           hexlength
-            ? document.getElementById('hex').value.substring(2, 3)
-              + document.getElementById('hex').value.substring(2, 3)
-            : document.getElementById('hex').value.substring(4, 6),
+            ? hex.substring(2, 3) + hex.substring(2, 3)
+            : hex.substring(4, 6),
           16
         )
       ) / 51) * .2;
@@ -38,9 +38,8 @@ function darken_lighten(change){
       (eval(
         parseInt(
           hexlength
-            ? document.getElementById('hex').value.substring(1, 2)
-              + document.getElementById('hex').value.substring(1, 2)
-            : document.getElementById('hex').value.substring(2, 4),
+            ? hex.substring(1, 2) + hex.substring(1, 2)
+            : hex.substring(2, 4),
           16
         )
       ) / 51) * .2;
@@ -48,9 +47,8 @@ function darken_lighten(change){
       (eval(
         parseInt(
           hexlength
-            ? document.getElementById('hex').value.substring(0, 1)
-              + document.getElementById('hex').value.substring(0, 1)
-            : document.getElementById('hex').value.substring(0, 2),
+            ? hex.substring(0, 1) + hex.substring(0, 1)
+            : hex.substring(0, 2),
           16
         )
       ) / 51) * .2;
@@ -240,16 +238,18 @@ function update_display(){
 function update_from1(color){
     // Update value of slider when 0-1 text input is changed
     //   and validate 0-1 text input value isn't less than 0 or greater than 1.
-    if(document.getElementById(color + '-1').value < 0
-      || document.getElementById(color + '-1').value > 1){
+    var color_value = document.getElementById(color + '-1').value;
+    if(color_value < 0
+      || color_value > 1){
         document.getElementById(color + '-1').value = 0;
     }
 
     // If 0-1 text input value is a number, proceed.
-    if(!isNaN(document.getElementById(color + '-1').value)){
+    color_value = document.getElementById(color + '-1').value;
+    if(!isNaN(color_value)){
         // Update the sliders, color value out of 255, and the display.
-        document.getElementById(color).value = Math.round(document.getElementById(color + '-1').value * 255);
-        document.getElementById(color + '-255').value = Math.round(document.getElementById(color + '-1').value * 255);
+        document.getElementById(color).value = Math.round(color_value * 255);
+        document.getElementById(color + '-255').value = Math.round(color_value * 255);
         update_display();
     }
     // If 0-1 text input is not a number, don't do anything in case users are entering '.',
@@ -258,19 +258,21 @@ function update_from1(color){
 function update_from255(color){
     // Update value of slider when 0-255 text input is changed
     //   and validate 0-255 text input value is a number that isn't less than 0 or greater than 255.
-    if(isNaN(document.getElementById(color + '-255').value)
-      || document.getElementById(color + '-255').value < 0
-      || document.getElementById(color + '-255').value > 255){
+    var color_value = document.getElementById(color + '-255').value;
+    if(isNaN(color_value)
+      || color_value < 0
+      || color_value > 255){
         document.getElementById(color + '-255').value = 0;
     }
 
     // If 0-255 text input length is 0, just use color value of 0 instead of messing with user input.
-    document.getElementById(color).value = document.getElementById(color + '-255').value.length < 1
+    color_value = document.getElementById(color + '-255').value;
+    document.getElementById(color).value = color_value.length < 1
       ? 0
-      : document.getElementById(color + '-255').value;
-    document.getElementById(color + '-1').value = document.getElementById(color + '-255').value.length < 1
+      : color_value;
+    document.getElementById(color + '-1').value = color_value.length < 1
       ? 0
-      : (document.getElementById(color + '-255').value / 255).toFixed(4);
+      : (color_value / 255).toFixed(4);
 
     update_display();
 }
@@ -278,25 +280,23 @@ function update_from255(color){
 function update_fromhex(){
     // Update values of slider/text inputs when hex input is changed.
     // Hex length of 3 is valid.
-    var hexlength = document.getElementById('hex').value.length === 3;
+    var hex = document.getElementById('hex').value;
+    var hexlength = hex.length === 3;
 
     document.getElementById('blue-255').value =
       parseInt(hexlength
-        ? document.getElementById('hex').value.substring(2, 3)
-          + document.getElementById('hex').value.substring(2, 3)
-        : document.getElementById('hex').value.substring(4, 6),
+        ? hex.substring(2, 3) + hex.substring(2, 3)
+        : hex.substring(4, 6),
       16);
     document.getElementById('green-255').value =
       parseInt(hexlength
-        ? document.getElementById('hex').value.substring(1, 2)
-          + document.getElementById('hex').value.substring(1, 2)
-        : document.getElementById('hex').value.substring(2, 4),
+        ? hex.substring(1, 2) + hex.substring(1, 2)
+        : hex.substring(2, 4),
       16);
     document.getElementById('red-255').value =
       parseInt(hexlength
-        ? document.getElementById('hex').value.substring(0, 1)
-          + document.getElementById('hex').value.substring(0, 1)
-        : document.getElementById('hex').value.substring(0, 2),
+        ? hex.substring(0, 1) + hex.substring(0, 1)
+        : hex.substring(0, 2),
       16);
 
     update_from255('blue');
@@ -308,8 +308,9 @@ function update_fromhex(){
 
 function update_fromslider(color){
     // Update values of hex and text inputs when slider is slided.
-    document.getElementById(color + '-1').value = (document.getElementById(color).value / 255).toFixed(4);
-    document.getElementById(color + '-255').value = document.getElementById(color).value;
+    var color_value = document.getElementById(color).value;
+    document.getElementById(color + '-1').value = (color_value / 255).toFixed(4);
+    document.getElementById(color + '-255').value = color_value;
 
     update_display();
     update_hex();
@@ -330,15 +331,13 @@ function update_hex(){
 }
 
 function update_wcag(source, source_hex, lengthofthree){
+    var source_value = document.getElementById(source_hex).value;
     document.getElementById(source).value = lengthofthree
       ? '#'
-        + document.getElementById(source_hex).value[1]
-        + document.getElementById(source_hex).value[1]
-        + document.getElementById(source_hex).value[2]
-        + document.getElementById(source_hex).value[2]
-        + document.getElementById(source_hex).value[3]
-        + document.getElementById(source_hex).value[3]
-      : document.getElementById(source_hex).value;
+        + source_value[1] + source_value[1]
+        + source_value[2] + source_value[2]
+        + source_value[3] + source_value[3]
+      : source_value;
 
     var background_math =
       (.2126 * calculate_wcag('wcag-background-color', 2, lengthofthree)
@@ -382,14 +381,12 @@ function update_wcag(source, source_hex, lengthofthree){
         : 'Failed'
       );
 
-    document.getElementById('wcag-text-normal').style.backgroundColor =
-      document.getElementById('wcag-background-color').value;
-    document.getElementById('wcag-text-normal').style.color =
-      document.getElementById('wcag-foreground-color').value;
-    document.getElementById('wcag-text-large').style.backgroundColor =
-      document.getElementById('wcag-background-color').value;
-    document.getElementById('wcag-text-large').style.color =
-      document.getElementById('wcag-foreground-color').value;
+    var background = document.getElementById('wcag-background-color').value;
+    var foreground = document.getElementById('wcag-foreground-color').value;
+    document.getElementById('wcag-text-normal').style.backgroundColor = background;
+    document.getElementById('wcag-text-normal').style.color = foreground;
+    document.getElementById('wcag-text-large').style.backgroundColor = background ;
+    document.getElementById('wcag-text-large').style.color = foreground;
 }
 
 function wcag_set(target){
@@ -417,7 +414,7 @@ function wcag_switch(){
     update_wcag(
       'wcag-foreground',
       'wcag-foreground-color',
-      document.getElementById('wcag-foreground-color').value.length === 4
+      temp.length === 4
     );
 }
 
