@@ -418,52 +418,6 @@ function wcag_switch(){
     );
 }
 
-// Event fires when user changes hex text input.
-document.getElementById('hex').oninput = update_fromhex;
-
-// Event fires when user updates the hex-color color input.
-document.getElementById('hex-color').oninput = function(){
-    document.getElementById('hex').value =
-      document.getElementById('hex-color').value.substring(
-        1,
-        7
-      );
-
-    update_fromhex();
-};
-
-document.getElementById('wcag-background-color').oninput = function(){
-    update_wcag(
-      'wcag-background',
-      'wcag-background-color',
-      document.getElementById('wcag-background-color').value.length === 4
-    );
-};
-
-document.getElementById('wcag-background').oninput = function(){
-    update_wcag(
-      'wcag-background-color',
-      'wcag-background',
-      0
-    );
-};
-
-document.getElementById('wcag-foreground-color').oninput = function(){
-    update_wcag(
-      'wcag-foreground',
-      'wcag-foreground-color',
-      document.getElementById('wcag-foreground-color').value.length === 4
-    );
-};
-
-document.getElementById('wcag-foreground').oninput = function(){
-    update_wcag(
-      'wcag-foreground-color',
-      'wcag-foreground',
-      0
-    );
-};
-
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
 
@@ -510,6 +464,52 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(e){
+    // Event fires when user changes hex text input.
+    document.getElementById('hex').oninput = update_fromhex;
+
+    // Event fires when user updates the hex-color color input.
+    document.getElementById('hex-color').oninput = function(){
+        document.getElementById('hex').value =
+          document.getElementById('hex-color').value.substring(
+            1,
+            7
+          );
+
+        update_fromhex();
+    };
+
+    document.getElementById('wcag-background-color').oninput = function(){
+        update_wcag(
+          'wcag-background',
+          'wcag-background-color',
+          document.getElementById('wcag-background-color').value.length === 4
+        );
+    };
+
+    document.getElementById('wcag-background').oninput = function(){
+        update_wcag(
+          'wcag-background-color',
+          'wcag-background',
+          0
+        );
+    };
+
+    document.getElementById('wcag-foreground-color').oninput = function(){
+        update_wcag(
+          'wcag-foreground',
+          'wcag-foreground-color',
+          document.getElementById('wcag-foreground-color').value.length === 4
+        );
+    };
+
+    document.getElementById('wcag-foreground').oninput = function(){
+        update_wcag(
+          'wcag-foreground-color',
+          'wcag-foreground',
+          0
+        );
+    };
+
     random_hex();
 
     update_wcag(
