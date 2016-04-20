@@ -230,9 +230,9 @@ function update_display(){
 
     // Updates the display square background color.
     document.getElementById('display').style.background = 'rgb('
-      + parseInt(document.getElementById('red').value) + ','
-      + parseInt(document.getElementById('green').value) + ','
-      + parseInt(document.getElementById('blue').value) + ')';
+      + parseInt(document.getElementById('red').value, 10) + ','
+      + parseInt(document.getElementById('green').value, 10) + ','
+      + parseInt(document.getElementById('blue').value, 10) + ')';
 }
 
 function update_from1(color){
@@ -284,20 +284,26 @@ function update_fromhex(){
     var hexlength = hex.length === 3;
 
     document.getElementById('blue-255').value =
-      parseInt(hexlength
-        ? hex.substring(2, 3) + hex.substring(2, 3)
-        : hex.substring(4, 6),
-      16);
+      parseInt(
+        hexlength
+          ? hex.substring(2, 3) + hex.substring(2, 3)
+          : hex.substring(4, 6),
+        16
+      );
     document.getElementById('green-255').value =
-      parseInt(hexlength
-        ? hex.substring(1, 2) + hex.substring(1, 2)
-        : hex.substring(2, 4),
-      16);
+      parseInt(
+        hexlength
+          ? hex.substring(1, 2) + hex.substring(1, 2)
+          : hex.substring(2, 4),
+        16
+      );
     document.getElementById('red-255').value =
-      parseInt(hexlength
-        ? hex.substring(0, 1) + hex.substring(0, 1)
-        : hex.substring(0, 2),
-      16);
+      parseInt(
+        hexlength
+          ? hex.substring(0, 1) + hex.substring(0, 1)
+          : hex.substring(0, 2),
+        16
+      );
 
     update_from255('blue');
     update_from255('green');
