@@ -16,3 +16,8 @@ Reset                                 | T
 Set WCAG Background Color             | N
 Set WCAG Foreground Color             | O
 Switch WCAG Background and Foreground | S
+
+---
+
+Requires:
+* [iterami/common](https://github.com/iterami/common)

@@ -424,52 +424,56 @@ function wcag_switch(){
     );
 }
 
-window.onkeydown = function(e){
-    var key = e.keyCode || e.which;
-
-    // G: random green.
-    if(key === 71){
-        random_color('green');
-
-    // H: random hex.
-    }else if(key === 72){
-        random_hex();
-
-    // K: darken hex.
-    }else if(key === 75){
-        darken_lighten(0);
-
-    // L: lighten hex.
-    }else if(key === 76){
-        darken_lighten(1);
-
-    // N: set wcag background color.
-    }else if(key === 78){
-        wcag_set('background');
-
-    // O: set wcag foreground color.
-    }else if(key === 79){
-        wcag_set('foreground');
-
-    // R: random red.
-    }else if(key === 82){
-        random_color('red');
-
-    // S: switch wcag background and foreground.
-    }else if(key === 83){
-        wcag_switch();
-
-    // T: reset().
-    }else if(key === 84){
-        reset();
-
-    // U: random blue.
-    }else if(key === 85){
-        random_color('blue');
-    }
-};
-
 window.onload = function(e){
+    init_input(
+      {
+        71: {
+          'todo': function(){
+              random_color('green');
+          },
+        },
+        72: {
+          'todo': random_hex,
+        },
+        75: {
+          'todo': function(){
+              darken_lighten(0);
+          },
+        },
+        76: {
+          'todo': function(){
+              darken_lighten(1);
+          },
+        },
+        78: {
+          'todo': function(){
+              wcag_set('background');
+          },
+        },
+        79: {
+          'todo': function(){
+              wcag_set('foreground');
+          },
+        },
+        82: {
+          'todo': function(){
+              random_color('red');
+          },
+        },
+        83: {
+          'todo': wcag_switch,
+        },
+        84: {
+          'todo': reset,
+        },
+        85: {
+          'todo': function(){
+              random_color('blue');
+          },
+        },
+      }
+    );
+
     // Event fires when user changes hex text input.
     document.getElementById('hex').oninput = update_fromhex;
 
