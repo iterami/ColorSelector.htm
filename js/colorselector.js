@@ -425,7 +425,7 @@ function wcag_switch(){
 }
 
 window.onload = function(e){
-    init_input(
+    input_init(
       {
         71: {
           'todo': function(){
