@@ -185,20 +185,16 @@ function hexvalues(i){
 }
 
 function random_color(color){
-    document.getElementById(color).value = Math.floor(Math.random() * 256);
-    update_fromslider(color);
-}
+    color = color || 'hex';
 
-function random_hex(){
-    document.getElementById('hex').value =
-      hexvalues(Math.floor(Math.random() * 16))
-      + hexvalues(Math.floor(Math.random() * 16))
-      + hexvalues(Math.floor(Math.random() * 16))
-      + hexvalues(Math.floor(Math.random() * 16))
-      + hexvalues(Math.floor(Math.random() * 16))
-      + hexvalues(Math.floor(Math.random() * 16));
+    if(color === 'hex'){
+        document.getElementById(color).value = random_hex(false);
+        update_fromhex();
 
-    update_fromhex();
+    }else{
+        document.getElementById(color).value = random_integer(256);
+        update_fromslider(color);
+    }
 }
 
 function reset(){
@@ -433,7 +429,10 @@ window.onload = function(e){
           },
         },
         72: {
-          'todo': random_hex,
+          'todo': function(){
+              document.getElementById('hex').value = random_hex(false);
+              update_fromhex();
+          },
         },
         75: {
           'todo': function(){
@@ -520,7 +519,8 @@ window.onload = function(e){
         );
     };
 
-    random_hex();
+    document.getElementById('hex').value = random_hex(false);
+    update_fromhex();
 
     update_wcag(
       'wcag-background',
