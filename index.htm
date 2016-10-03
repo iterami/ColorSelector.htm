@@ -4,23 +4,23 @@
 <link href=../common/css/dom.css rel=stylesheet>
 
 <div class="inline right">
-    <input onclick=random_color('red') type=button value="Red [R]"><br>
-    <input onclick=random_color('green') type=button value="Green [G]"><br>
-    <input onclick=random_color('blue') type=button value="Blue [U]"><br>
-    <input onclick=random_color() type=button value="Hex [H]">
+    <input id=red-random type=button value="Red [R]"><br>
+    <input id=green-random type=button value="Green [G]"><br>
+    <input id=blue-random type=button value="Blue [U]"><br>
+    <input id=color-random type=button value="Hex [H]">
 </div>
 <div class=inline>
     <input id=red max=255 min=0 step=1 type=range><br>
     <input id=green max=255 min=0 step=1 type=range><br>
     <input id=blue max=255 min=0 step=1 type=range><br>
-    <input onclick=darken_lighten(0) type=button value="Darken [K]">
-      <input onclick=darken_lighten(1) type=button value="Lighten [L]">
+    <input id=darken type=button value="Darken [K]">
+      <input id=lighten type=button value="Lighten [L]">
 </div>
 <div class="inline right">
     <input id=red-255 maxlength=3><input id=red-1 maxlength=6><br>
     <input id=green-255 maxlength=3><input id=green-1 maxlength=6><br>
     <input id=blue-255 maxlength=3><input id=blue-1 maxlength=6><br>
-    <input onclick=reset() type=button value="Reset [T]"><input id=hex-color type=color>#<input id=hex maxlength=6>
+    <input id=hex-color type=color>#<input id=hex maxlength=6>
 </div>
 <div class="box inline" id=display></div>
 <hr>
@@ -37,11 +37,11 @@
     <input id=wcag-foreground type=color>
 </div>
 <div class=inline>
-    <input onclick=wcag_set('background') type=button value="Use Generated Color [N]"><br>
-    <input onclick=wcag_set('foreground') type=button value="Use Generated Color [O]">
+    <input id=wcag-background-use type=button value="Use Generated Color [N]"><br>
+    <input id=wcag-foreground-use type=button value="Use Generated Color [O]">
 </div>
 <div class=inline>
-    <input onclick=wcag_switch() type=button value="Switch [S]">
+    <input id=wcag type=button value="Switch [S]">
 </div>
 <table class=right>
     <tr>

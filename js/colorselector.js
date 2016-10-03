@@ -197,28 +197,6 @@ function random_color(color){
     }
 }
 
-function reset(){
-    if(!window.confirm('Reset colors?')){
-        return;
-    }
-
-    document.getElementById('wcag-background-color').value = '#000000';
-    update_wcag(
-      'wcag-background',
-      'wcag-background-color',
-      false
-    );
-    document.getElementById('wcag-foreground-color').value = '#ffffff';
-    update_wcag(
-      'wcag-foreground',
-      'wcag-foreground-color',
-      false
-    );
-
-    document.getElementById('hex').value = '000000';
-    update_fromhex();
-}
-
 function update_display(){
     // Set hex-color value to hex value.
     document.getElementById('hex-color').value =
@@ -462,9 +440,6 @@ window.onload = function(e){
         83: {
           'todo': wcag_switch,
         },
-        84: {
-          'todo': reset,
-        },
         85: {
           'todo': function(){
               random_color('blue');
@@ -540,6 +515,12 @@ window.onload = function(e){
     ];
 
     for(var color in colors){
+        document.getElementById(colors[color] + '-random').onclick = function(){
+            var id = this.id;
+            // Event fires when color button is clicked.
+            random_color(id.substring(0, id.indexOf('-')));
+        };
+
         document.getElementById(colors[color]).oninput = function(){
             // Event fires when colors[color] slider is being slided.
             update_fromslider(this.id);
@@ -559,4 +540,20 @@ window.onload = function(e){
             update_hex();
         };
     }
+    document.getElementById('color-random').onclick = function(){
+        random_color();
+    };
+    document.getElementById('darken').onclick = function(){
+        darken_lighten(0);
+    };
+    document.getElementById('lighten').onclick = function(){
+        darken_lighten(1);
+    };
+    document.getElementById('wcag').onclick = wcag_switch;
+    document.getElementById('wcag-background-use').onclick = function(){
+        wcag_set('background');
+    };
+    document.getElementById('wcag-foreground-use').onclick = function(){
+        wcag_set('foreground');
+    };
 };
