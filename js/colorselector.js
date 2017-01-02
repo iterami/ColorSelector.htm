@@ -403,8 +403,8 @@ function wcag_switch(){
 }
 
 window.onload = function(e){
-    input_init(
-      {
+    input_init({
+      'keybinds': {
         71: {
           'todo': function(){
               random_color('green');
@@ -451,8 +451,8 @@ window.onload = function(e){
               random_color('blue');
           },
         },
-      }
-    );
+      },
+    });
 
     // Event fires when user changes hex text input.
     document.getElementById('hex').oninput = update_fromhex;
