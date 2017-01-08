@@ -341,25 +341,25 @@ function update_wcag(source, source_hex, length){
     ) / 10;
 
     document.getElementById('wcag-text-normal-aaa').innerHTML =
-      '<b>' + wcag_score + '</b> / 7.0 = '
+      wcag_score + ' / 7.0 = '
       + (wcag_score > 7
         ? 'Passed'
         : 'Failed'
       );
     document.getElementById('wcag-text-normal-aa').innerHTML =
-      '<b>' + wcag_score + '</b> / 4.5 = '
+      wcag_score + ' / 4.5 = '
       + (wcag_score > 4.5
         ? 'Passed'
         : 'Failed'
       );
     document.getElementById('wcag-text-large-aaa').innerHTML =
-      '<b>' + wcag_score + '</b> / 4.5 = '
+      wcag_score + ' / 4.5 = '
       + (wcag_score > 4.5
         ? 'Passed'
         : 'Failed'
       );
     document.getElementById('wcag-text-large-aa').innerHTML =
-      '<b>' + wcag_score + '</b> / 3.0 = '
+      wcag_score + ' / 3.0 = '
       + (wcag_score > 3
         ? 'Passed'
         : 'Failed'
