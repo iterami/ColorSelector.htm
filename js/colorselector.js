@@ -188,9 +188,7 @@ function random_color(color){
     color = color || 'hex';
 
     if(color === 'hex'){
-        document.getElementById(color).value = random_hex({
-          'hash': false,
-        });
+        document.getElementById(color).value = random_hex();
         update_fromhex();
 
     }else{
@@ -410,9 +408,7 @@ window.onload = function(e){
         },
         72: {
           'todo': function(){
-              document.getElementById('hex').value = random_hex({
-                'hash': false,
-              });
+              document.getElementById('hex').value = random_hex();
               update_fromhex();
           },
         },
@@ -498,9 +494,7 @@ window.onload = function(e){
         );
     };
 
-    document.getElementById('hex').value = random_hex({
-      'hash': false,
-    });
+    document.getElementById('hex').value = random_hex();
     update_fromhex();
 
     update_wcag(
