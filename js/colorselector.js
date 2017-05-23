@@ -399,7 +399,7 @@ function wcag_switch(){
 }
 
 window.onload = function(e){
-    input_init({
+    core_input_init({
       'keybinds': {
         71: {
           'todo': function(){
