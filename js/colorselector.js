@@ -198,6 +198,9 @@ function random_color(color){
 }
 
 function repo_init(){
+    core_repo_init({
+      'title': 'ColorSelector.htm',
+    });
     core_events_bind({
       'keybinds': {
         71: {
