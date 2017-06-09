@@ -199,9 +199,6 @@ function random_color(color){
 
 function repo_init(){
     core_repo_init({
-      'title': 'ColorSelector.htm',
-    });
-    core_events_bind({
       'keybinds': {
         71: {
           'todo': function(){
@@ -248,6 +245,7 @@ function repo_init(){
           },
         },
       },
+      'title': 'ColorSelector.htm',
     });
 
     // Event fires when user changes hex text input.
