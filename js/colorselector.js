@@ -192,7 +192,9 @@ function random_color(color){
         update_fromhex();
 
     }else{
-        document.getElementById(color).value = core_random_integer();
+        document.getElementById(color).value = core_random_integer({
+          'max': 255,
+        });
         update_fromslider(color);
     }
 }
