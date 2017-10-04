@@ -499,26 +499,22 @@ function update_wcag(source, source_hex, length){
       * 10
     ) / 10;
 
-    document.getElementById('wcag-text-normal-aaa').innerHTML =
-      wcag_score + ' / 7.0 = '
+    document.getElementById('wcag-text-normal-result').innerHTML =
+      wcag_score + ' / 7.0 = AAA '
       + (wcag_score > 7
         ? 'Passed'
         : 'Failed'
-      );
-    document.getElementById('wcag-text-normal-aa').innerHTML =
-      wcag_score + ' / 4.5 = '
+      ) + '<br>' + wcag_score + ' / 4.5 = AA '
       + (wcag_score > 4.5
         ? 'Passed'
         : 'Failed'
       );
-    document.getElementById('wcag-text-large-aaa').innerHTML =
-      wcag_score + ' / 4.5 = '
+    document.getElementById('wcag-text-large-result').innerHTML =
+      wcag_score + ' / 4.5 = AAA '
       + (wcag_score > 4.5
         ? 'Passed'
         : 'Failed'
-      );
-    document.getElementById('wcag-text-large-aa').innerHTML =
-      wcag_score + ' / 3.0 = '
+      ) + '<br>' + wcag_score + ' / 3.0 = AA '
       + (wcag_score > 3
         ? 'Passed'
         : 'Failed'
