@@ -376,20 +376,17 @@ function update_from1(color){
     // Update value of slider when 0-1 text input is changed
     //   and validate 0-1 text input value isn't less than 0 or greater than 1.
     var color_value = document.getElementById(color + '-1').value;
-    if(color_value < 0
+    if(isNaN(color_value)
+      || color_value < 0
       || color_value > 1){
-        document.getElementById(color + '-1').value = 0;
+        color_value = 0;
+        document.getElementById(color + '-1').value = color_value;
     }
 
-    // If 0-1 text input value is a number, proceed.
-    color_value = document.getElementById(color + '-1').value;
-    if(!isNaN(color_value)){
-        // Update the sliders, color value out of 255, and the display.
-        document.getElementById(color).value = Math.round(color_value * 255);
-        document.getElementById(color + '-255').value = Math.round(color_value * 255);
-        update_display();
-    }
-    // If 0-1 text input is not a number, don't do anything in case users are entering '.',
+    var color_value = Math.round(color_value * 255);
+    document.getElementById(color).value = color_value;
+    document.getElementById(color + '-255').value = color_value;
+    update_display();
 }
 
 function update_from255(color){
