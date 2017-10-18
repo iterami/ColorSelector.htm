@@ -2,6 +2,36 @@
 
 function repo_init(){
     core_repo_init({
+      'info-events': {
+        'color-random': {
+          'todo':  function(){
+              random_color();
+          },
+        },
+        'darken': {
+          'todo': function(){
+              darken_lighten(0);
+          },
+        },
+        'lighten': {
+          'todo': function(){
+              darken_lighten(1);
+          },
+        },
+        'wcag': {
+          'todo': wcag_switch,
+        },
+        'wcag-background-use': {
+          'todo': function(){
+              wcag_set('background');
+          },
+        },
+        'wcag-foreground-use': {
+          'todo': function(){
+              wcag_set('foreground');
+          },
+        },
+      },
       'keybinds': {
         71: {
           'todo': function(){
@@ -143,20 +173,4 @@ function repo_init(){
             update_hex();
         };
     }
-    document.getElementById('color-random').onclick = function(){
-        random_color();
-    };
-    document.getElementById('darken').onclick = function(){
-        darken_lighten(0);
-    };
-    document.getElementById('lighten').onclick = function(){
-        darken_lighten(1);
-    };
-    document.getElementById('wcag').onclick = wcag_switch;
-    document.getElementById('wcag-background-use').onclick = function(){
-        wcag_set('background');
-    };
-    document.getElementById('wcag-foreground-use').onclick = function(){
-        wcag_set('foreground');
-    };
 }
