@@ -336,7 +336,7 @@ function update_wcag(source, source_hex, length){
     ) / 10;
 
     document.getElementById('wcag-text-normal-result').innerHTML =
-      wcag_score + ' / 7.0 = AAA '
+      wcag_score + ' / 7 = AAA '
       + (wcag_score > 7
         ? 'Passed'
         : 'Failed'
@@ -350,7 +350,7 @@ function update_wcag(source, source_hex, length){
       + (wcag_score > 4.5
         ? 'Passed'
         : 'Failed'
-      ) + '<br>' + wcag_score + ' / 3.0 = AA '
+      ) + '<br>' + wcag_score + ' / 3 = AA '
       + (wcag_score > 3
         ? 'Passed'
         : 'Failed'
