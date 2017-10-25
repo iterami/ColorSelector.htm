@@ -2,32 +2,32 @@
 
 function repo_init(){
     core_repo_init({
-      'info-events': {
+      'events': {
         'color-random': {
-          'todo':  function(){
+          'onclick':  function(){
               random_color();
           },
         },
         'darken': {
-          'todo': function(){
+          'onclick': function(){
               darken_lighten(0);
           },
         },
         'lighten': {
-          'todo': function(){
+          'onclick': function(){
               darken_lighten(1);
           },
         },
         'wcag': {
-          'todo': wcag_switch,
+          'onclick': wcag_switch,
         },
         'wcag-background-use': {
-          'todo': function(){
+          'onclick': function(){
               wcag_set('background');
           },
         },
         'wcag-foreground-use': {
-          'todo': function(){
+          'onclick': function(){
               wcag_set('foreground');
           },
         },
