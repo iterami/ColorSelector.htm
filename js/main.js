@@ -13,6 +13,20 @@ function repo_init(){
               darken_lighten(0);
           },
         },
+        'hex': {
+          'oninput': update_fromhex,
+        },
+        'hex-color': {
+          'oninput': function(){
+              document.getElementById('hex').value =
+                document.getElementById('hex-color').value.substring(
+                  1,
+                  7
+                );
+
+              update_fromhex();
+          },
+        },
         'lighten': {
           'onclick': function(){
               darken_lighten(1);
@@ -21,9 +35,45 @@ function repo_init(){
         'wcag': {
           'onclick': wcag_switch,
         },
+        'wcag-background': {
+          'oninput': function(){
+              update_wcag(
+                'wcag-background-color',
+                'wcag-background',
+                false
+              );
+          },
+        },
+        'wcag-background-color': {
+          'oninput': function(){
+              update_wcag(
+                'wcag-background',
+                'wcag-background-color',
+                document.getElementById('wcag-background-color').value.length
+              );
+          },
+        },
         'wcag-background-use': {
           'onclick': function(){
               wcag_set('background');
+          },
+        },
+        'wcag-foreground': {
+          'oninput': function(){
+              update_wcag(
+                'wcag-foreground-color',
+                'wcag-foreground',
+                false
+              );
+          },
+        },
+        'wcag-foreground-color': {
+          'oninput': function(){
+              update_wcag(
+                'wcag-foreground',
+                'wcag-foreground-color',
+                document.getElementById('wcag-foreground-color').value.length
+              );
           },
         },
         'wcag-foreground-use': {
@@ -80,52 +130,6 @@ function repo_init(){
       },
       'title': 'ColorSelector.htm',
     });
-
-    // Event fires when user changes hex text input.
-    document.getElementById('hex').oninput = update_fromhex;
-
-    // Event fires when user updates the hex-color color input.
-    document.getElementById('hex-color').oninput = function(){
-        document.getElementById('hex').value =
-          document.getElementById('hex-color').value.substring(
-            1,
-            7
-          );
-
-        update_fromhex();
-    };
-
-    document.getElementById('wcag-background-color').oninput = function(){
-        update_wcag(
-          'wcag-background',
-          'wcag-background-color',
-          document.getElementById('wcag-background-color').value.length
-        );
-    };
-
-    document.getElementById('wcag-background').oninput = function(){
-        update_wcag(
-          'wcag-background-color',
-          'wcag-background',
-          false
-        );
-    };
-
-    document.getElementById('wcag-foreground-color').oninput = function(){
-        update_wcag(
-          'wcag-foreground',
-          'wcag-foreground-color',
-          document.getElementById('wcag-foreground-color').value.length
-        );
-    };
-
-    document.getElementById('wcag-foreground').oninput = function(){
-        update_wcag(
-          'wcag-foreground-color',
-          'wcag-foreground',
-          false
-        );
-    };
 
     document.getElementById('hex').value = core_random_hex();
     update_fromhex();
