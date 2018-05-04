@@ -309,24 +309,20 @@ function update_hex(){
     update_display();
 }
 
-function update_wcag(source, source_hex, length){
-    var source_value = document.getElementById(source_hex).value;
-    document.getElementById(source).value = length === 4
-      ? '#'
-        + source_value[1] + source_value[1]
-        + source_value[2] + source_value[2]
-        + source_value[3] + source_value[3]
-      : source_value;
+function update_wcag(source_hex, length_background, length_foreground){
+    if(length_foreground === -1){
+        length_foreground = length_background;
+    }
 
     var background_math =
-      (.2126 * calculate_wcag('wcag-background-color', 2, length)
-      + .7152 * calculate_wcag('wcag-background-color', 4, length)
-      + .0722 * calculate_wcag('wcag-background-color', 6, length)
+      (.2126 * calculate_wcag('wcag-background-color', 2, length_background)
+      + .7152 * calculate_wcag('wcag-background-color', 4, length_background)
+      + .0722 * calculate_wcag('wcag-background-color', 6, length_background)
     );
     var foreground_math =
-      (.2126 * calculate_wcag('wcag-foreground-color', 2, length)
-      + .7152 * calculate_wcag('wcag-foreground-color', 4, length)
-      + .0722 * calculate_wcag('wcag-foreground-color', 6, length)
+      (.2126 * calculate_wcag('wcag-foreground-color', 2, length_foreground)
+      + .7152 * calculate_wcag('wcag-foreground-color', 4, length_foreground)
+      + .0722 * calculate_wcag('wcag-foreground-color', 6, length_foreground)
     );
 
     var wcag_score = Math.round(
@@ -358,9 +354,21 @@ function update_wcag(source, source_hex, length){
 
     var background = document.getElementById('wcag-background-color').value;
     var foreground = document.getElementById('wcag-foreground-color').value;
+    document.getElementById('wcag-background').value = length_background === 4
+      ? '#'
+        + background[1] + background[1]
+        + background[2] + background[2]
+        + background[3] + background[3]
+      : background;
+    document.getElementById('wcag-foreground').value = length_foreground === 4
+      ? '#'
+        + foreground[1] + foreground[1]
+        + foreground[2] + foreground[2]
+        + foreground[3] + foreground[3]
+      : foreground;
     document.getElementById('wcag-text-normal').style.backgroundColor = background;
     document.getElementById('wcag-text-normal').style.color = foreground;
-    document.getElementById('wcag-text-large').style.backgroundColor = background ;
+    document.getElementById('wcag-text-large').style.backgroundColor = background;
     document.getElementById('wcag-text-large').style.color = foreground;
 }
 
@@ -369,9 +377,9 @@ function wcag_set(target){
       '#' + document.getElementById('hex').value;
 
     update_wcag(
-      'wcag-' + target,
       'wcag-' + target + '-color',
-      document.getElementById('wcag-' + target + '-color').value.length
+      document.getElementById('wcag-' + target + '-color').value.length,
+      -1
     );
 }
 
@@ -381,8 +389,8 @@ function wcag_switch(){
     document.getElementById('wcag-foreground-color').value = temp;
 
     update_wcag(
-      'wcag-background',
       'wcag-background-color',
-      document.getElementById('wcag-background-color').value.length
+      document.getElementById('wcag-background-color').value.length,
+      temp.length
     );
 }
