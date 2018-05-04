@@ -385,10 +385,4 @@ function wcag_switch(){
       'wcag-background-color',
       document.getElementById('wcag-background-color').value.length
     );
-
-    update_wcag(
-      'wcag-foreground',
-      'wcag-foreground-color',
-      temp.length
-    );
 }
