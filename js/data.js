@@ -204,10 +204,18 @@ function update_display(){
     document.getElementById('hex-color').value =
       '#' + document.getElementById('hex').value;
 
-    // Updates the display square background color.
-    document.getElementById('display').style.background = 'rgb('
+    // Update the background color for each display.
+    document.getElementById('display-hex').style.background = 'rgb('
       + parseInt(document.getElementById('red').value, 10) + ','
       + parseInt(document.getElementById('green').value, 10) + ','
+      + parseInt(document.getElementById('blue').value, 10) + ')';
+    document.getElementById('display-red').style.background = 'rgb('
+      + parseInt(document.getElementById('red').value, 10)
+      + ',0,0)';
+    document.getElementById('display-green').style.background = 'rgb(0,'
+      + parseInt(document.getElementById('green').value, 10)
+      + ',0)';
+    document.getElementById('display-blue').style.background = 'rgb(0,0,'
       + parseInt(document.getElementById('blue').value, 10) + ')';
 }
 
