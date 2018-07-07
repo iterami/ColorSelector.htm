@@ -223,7 +223,7 @@ function update_from1(color){
     // Update value of slider when 0-1 text input is changed
     //   and validate 0-1 text input value isn't less than 0 or greater than 1.
     var color_value = document.getElementById(color + '-1').value;
-    if(isNaN(color_value)
+    if(Number.isNaN(color_value)
       || color_value < 0
       || color_value > 1){
         color_value = 0;
@@ -240,7 +240,7 @@ function update_from255(color){
     // Update value of slider when 0-255 text input is changed
     //   and validate 0-255 text input value is a number that isn't less than 0 or greater than 255.
     var color_value = document.getElementById(color + '-255').value;
-    if(isNaN(color_value)
+    if(Number.isNaN(color_value)
       || color_value < 0
       || color_value > 255){
         document.getElementById(color + '-255').value = 0;
