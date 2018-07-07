@@ -2,7 +2,7 @@
 
 function calculate_wcag(source, offset, length){
     var source = document.getElementById(source).value;
-    var math = parseInt(
+    var math = Number.parseInt(
       length === 4
         ? source[offset / 2] + source[offset / 2]
         : source.substring(
@@ -27,7 +27,7 @@ function darken_lighten(change){
     // Get colors.
     var blue =
       (eval(
-        parseInt(
+        Number.parseInt(
           hexlength
             ? hex.substring(2, 3) + hex.substring(2, 3)
             : hex.substring(4, 6),
@@ -36,7 +36,7 @@ function darken_lighten(change){
       ) / 51) * .2;
     var green =
       (eval(
-        parseInt(
+        Number.parseInt(
           hexlength
             ? hex.substring(1, 2) + hex.substring(1, 2)
             : hex.substring(2, 4),
@@ -45,7 +45,7 @@ function darken_lighten(change){
       ) / 51) * .2;
     var red =
       (eval(
-        parseInt(
+        Number.parseInt(
           hexlength
             ? hex.substring(0, 1) + hex.substring(0, 1)
             : hex.substring(0, 2),
@@ -206,17 +206,17 @@ function update_display(){
 
     // Update the background color for each display.
     document.getElementById('display-hex').style.background = 'rgb('
-      + parseInt(document.getElementById('red').value, 10) + ','
-      + parseInt(document.getElementById('green').value, 10) + ','
-      + parseInt(document.getElementById('blue').value, 10) + ')';
+      + Number.parseInt(document.getElementById('red').value, 10) + ','
+      + Number.parseInt(document.getElementById('green').value, 10) + ','
+      + Number.parseInt(document.getElementById('blue').value, 10) + ')';
     document.getElementById('display-red').style.background = 'rgb('
-      + parseInt(document.getElementById('red').value, 10)
+      + Number.parseInt(document.getElementById('red').value, 10)
       + ',0,0)';
     document.getElementById('display-green').style.background = 'rgb(0,'
-      + parseInt(document.getElementById('green').value, 10)
+      + Number.parseInt(document.getElementById('green').value, 10)
       + ',0)';
     document.getElementById('display-blue').style.background = 'rgb(0,0,'
-      + parseInt(document.getElementById('blue').value, 10) + ')';
+      + Number.parseInt(document.getElementById('blue').value, 10) + ')';
 }
 
 function update_from1(color){
@@ -265,21 +265,21 @@ function update_fromhex(){
     var hexlength = hex.length === 3;
 
     document.getElementById('blue-255').value =
-      parseInt(
+      Number.parseInt(
         hexlength
           ? hex.substring(2, 3) + hex.substring(2, 3)
           : hex.substring(4, 6),
         16
       );
     document.getElementById('green-255').value =
-      parseInt(
+      Number.parseInt(
         hexlength
           ? hex.substring(1, 2) + hex.substring(1, 2)
           : hex.substring(2, 4),
         16
       );
     document.getElementById('red-255').value =
-      parseInt(
+      Number.parseInt(
         hexlength
           ? hex.substring(0, 1) + hex.substring(0, 1)
           : hex.substring(0, 2),
@@ -305,9 +305,9 @@ function update_fromslider(color){
 
 function update_hex(){
     // Update the hex value based on slider values.
-    var red = Math.max(0, Math.min(parseInt(document.getElementById('red').value, 10), 255));
-    var green = Math.max(0, Math.min(parseInt(document.getElementById('green').value, 10), 255));
-    var blue = Math.max(0, Math.min(parseInt(document.getElementById('blue').value, 10), 255));
+    var red = Math.max(0, Math.min(Number.parseInt(document.getElementById('red').value, 10), 255));
+    var green = Math.max(0, Math.min(Number.parseInt(document.getElementById('green').value, 10), 255));
+    var blue = Math.max(0, Math.min(Number.parseInt(document.getElementById('blue').value, 10), 255));
 
     document.getElementById('hex').value =
       hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
