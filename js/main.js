@@ -145,15 +145,15 @@ function repo_init(){
       false
     );
 
-    var colors = [
+    let colors = [
       'blue',
       'green',
       'red',
     ];
 
-    for(var color in colors){
+    for(let color in colors){
         document.getElementById(colors[color] + '-random').onclick = function(){
-            var id = this.id;
+            let id = this.id;
             // Event fires when color button is clicked.
             random_color(id.substring(0, id.indexOf('-')));
         };
@@ -164,14 +164,14 @@ function repo_init(){
         };
 
         document.getElementById(colors[color] + '-1').oninput = function(){
-            var id = this.id;
+            let id = this.id;
             // Event fires when user changes colors[color] 1 text input.
             update_from1(id.substring(0, id.indexOf('-')));
             update_hex();
         };
 
         document.getElementById(colors[color] + '-255').oninput = function(){
-            var id = this.id;
+            let id = this.id;
             // Event fires when user changes colors[color] 255 text input.
             update_from255(id.substring(0, id.indexOf('-')));
             update_hex();
