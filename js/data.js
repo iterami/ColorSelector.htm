@@ -230,7 +230,7 @@ function update_from1(color){
         document.getElementById(color + '-1').value = color_value;
     }
 
-    let color_value = Math.round(color_value * 255);
+    color_value = Math.round(color_value * 255);
     document.getElementById(color).value = color_value;
     document.getElementById(color + '-255').value = color_value;
     update_display();
