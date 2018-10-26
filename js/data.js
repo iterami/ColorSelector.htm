@@ -381,8 +381,10 @@ function update_wcag(source_hex, length_background, length_foreground){
 }
 
 function wcag_set(target){
-    document.getElementById('wcag-' + target + '-color').value =
-      '#' + document.getElementById('hex').value;
+    let color = '#' + document.getElementById('hex').value;
+
+    document.getElementById('wcag-' + target + '-color').value = color;
+    document.getElementById('display-' + target).style.backgroundColor = color;
 
     update_wcag(
       'wcag-' + target + '-color',
@@ -392,9 +394,13 @@ function wcag_set(target){
 }
 
 function wcag_switch(){
-    let temp = document.getElementById('wcag-background-color').value;
-    document.getElementById('wcag-background-color').value = document.getElementById('wcag-foreground-color').value;
-    document.getElementById('wcag-foreground-color').value = temp;
+    let background = document.getElementById('wcag-background-color').value;
+    let foreground = document.getElementById('wcag-foreground-color').value;
+
+    document.getElementById('wcag-background-color').value = foreground;
+    document.getElementById('wcag-foreground-color').value = background;
+    document.getElementById('display-background').style.backgroundColor = foreground;
+    document.getElementById('display-foreground').style.backgroundColor = background;
 
     update_wcag(
       'wcag-background-color',

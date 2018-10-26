@@ -134,6 +134,7 @@ function repo_init(){
     document.getElementById('hex').value = core_random_hex();
     update_fromhex();
 
+    document.getElementById('display-foreground').style.backgroundColor = document.getElementById('wcag-foreground-color').value;
     update_wcag(
       'wcag-background',
       'wcag-background-color',
