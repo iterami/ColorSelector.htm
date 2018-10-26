@@ -397,8 +397,6 @@ function wcag_switch(){
     let background = document.getElementById('wcag-background-color').value;
     let foreground = document.getElementById('wcag-foreground-color').value;
 
-    document.getElementById('wcag-background').value = foreground;
-    document.getElementById('wcag-foreground').value = background;
     document.getElementById('wcag-background-color').value = foreground;
     document.getElementById('wcag-foreground-color').value = background;
     document.getElementById('display-background').style.backgroundColor = foreground;
@@ -407,6 +405,6 @@ function wcag_switch(){
     update_wcag(
       'wcag-background-color',
       document.getElementById('wcag-background-color').value.length,
-      temp.length
+      background.length
     );
 }
