@@ -37,20 +37,12 @@ function repo_init(){
         },
         'wcag-background': {
           'oninput': function(){
-              update_wcag(
-                'wcag-background-color',
-                'wcag-background',
-                false
-              );
+              update_wcag('wcag-background');
           },
         },
         'wcag-background-color': {
           'oninput': function(){
-              update_wcag(
-                'wcag-background',
-                'wcag-background-color',
-                document.getElementById('wcag-background-color').value.length
-              );
+              update_wcag('wcag-background-color');
           },
         },
         'wcag-background-use': {
@@ -60,20 +52,12 @@ function repo_init(){
         },
         'wcag-foreground': {
           'oninput': function(){
-              update_wcag(
-                'wcag-foreground-color',
-                'wcag-foreground',
-                false
-              );
+              update_wcag('wcag-foreground');
           },
         },
         'wcag-foreground-color': {
           'oninput': function(){
-              update_wcag(
-                'wcag-foreground',
-                'wcag-foreground-color',
-                document.getElementById('wcag-foreground-color').value.length
-              );
+              update_wcag('wcag-foreground-color');
           },
         },
         'wcag-foreground-use': {
@@ -131,27 +115,17 @@ function repo_init(){
       'title': 'ColorSelector.htm',
     });
 
+    document.getElementById('display-foreground').style.backgroundColor = document.getElementById('wcag-foreground-color').value;
+    update_wcag('wcag-foreground-color');
+
     document.getElementById('hex').value = core_random_hex();
     update_fromhex();
-
-    document.getElementById('display-foreground').style.backgroundColor = document.getElementById('wcag-foreground-color').value;
-    update_wcag(
-      'wcag-background',
-      'wcag-background-color',
-      false
-    );
-    update_wcag(
-      'wcag-foreground',
-      'wcag-foreground-color',
-      false
-    );
 
     let colors = [
       'blue',
       'green',
       'red',
     ];
-
     for(let color in colors){
         document.getElementById(colors[color] + '-random').onclick = function(){
             let id = this.id;
