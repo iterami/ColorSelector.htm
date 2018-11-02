@@ -370,25 +370,24 @@ function update_wcag(source){
     document.getElementById('wcag-text-normal').style.color = foreground;
     document.getElementById('wcag-text-large').style.backgroundColor = background;
     document.getElementById('wcag-text-large').style.color = foreground;
+
+    document.getElementById('display-background').style.backgroundColor = background;
+    document.getElementById('display-foreground').style.backgroundColor = foreground;
 }
 
 function wcag_set(target){
-    let color = '#' + document.getElementById('hex').value;
-
-    document.getElementById('wcag-' + target + '-color').value = color;
-    document.getElementById('display-' + target).style.backgroundColor = color;
+    document.getElementById('wcag-' + target + '-color').value = '#' + document.getElementById('hex').value;
 
     update_wcag('wcag-' + target + '-color');
 }
 
 function wcag_switch(){
-    let background = document.getElementById('wcag-background-color').value;
-    let foreground = document.getElementById('wcag-foreground-color').value;
+    let background_element = document.getElementById('wcag-background-color');
+    let foreground_element = document.getElementById('wcag-foreground-color');
 
-    document.getElementById('wcag-background-color').value = foreground;
-    document.getElementById('wcag-foreground-color').value = background;
-    document.getElementById('display-background').style.backgroundColor = foreground;
-    document.getElementById('display-foreground').style.backgroundColor = background;
+    let background = background_element.value;
+    background_element.value = foreground_element.value;
+    foreground_element.value = background;
 
     update_wcag('wcag-background-color');
 }
