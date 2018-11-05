@@ -364,12 +364,8 @@ function update_wcag(source){
     document.getElementById('wcag-text-large').style.backgroundColor = background;
     document.getElementById('wcag-text-large').style.color = foreground;
 
-    document.getElementById('display-background-color').style.backgroundColor
-      = document.getElementById('display-background-input').style.backgroundColor
-      = background;
-    document.getElementById('display-foreground-color').style.backgroundColor
-      = document.getElementById('display-foreground-input').style.backgroundColor
-      = foreground;
+    document.getElementById('display-background').style.backgroundColor = background;
+    document.getElementById('display-foreground').style.backgroundColor = foreground;
 }
 
 function wcag_set(target){
