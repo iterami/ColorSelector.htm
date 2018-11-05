@@ -115,6 +115,8 @@ function repo_init(){
       'title': 'ColorSelector.htm',
     });
 
+    document.getElementById('wcag-background-color').value = '#000000';
+    document.getElementById('wcag-foreground-color').value = '#ffffff';
     update_wcag('wcag-foreground-color');
 
     document.getElementById('hex').value = core_random_hex();
