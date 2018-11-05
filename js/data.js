@@ -390,4 +390,5 @@ function wcag_switch(){
     foreground_element.value = background;
 
     update_wcag('wcag-background-color');
+    update_wcag('wcag-foreground-color');
 }
