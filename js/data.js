@@ -200,23 +200,18 @@ function random_color(color){
 }
 
 function update_display(){
+    let blue = Number.parseInt(document.getElementById('blue').value, 10);
+    let green = Number.parseInt(document.getElementById('green').value, 10);
+    let red = Number.parseInt(document.getElementById('red').value, 10);
+
     // Set hex-color value to hex value.
-    document.getElementById('hex-color').value =
-      '#' + document.getElementById('hex').value;
+    document.getElementById('hex-color').value = '#' + document.getElementById('hex').value;
 
     // Update the background color for each display.
-    document.getElementById('display-hex').style.background = 'rgb('
-      + Number.parseInt(document.getElementById('red').value, 10) + ','
-      + Number.parseInt(document.getElementById('green').value, 10) + ','
-      + Number.parseInt(document.getElementById('blue').value, 10) + ')';
-    document.getElementById('display-red').style.background = 'rgb('
-      + Number.parseInt(document.getElementById('red').value, 10)
-      + ',0,0)';
-    document.getElementById('display-green').style.background = 'rgb(0,'
-      + Number.parseInt(document.getElementById('green').value, 10)
-      + ',0)';
-    document.getElementById('display-blue').style.background = 'rgb(0,0,'
-      + Number.parseInt(document.getElementById('blue').value, 10) + ')';
+    document.getElementById('display-hex').style.background = 'rgb(' + red + ',' + green + ',' + blue + ')';
+    document.getElementById('display-red').style.background = 'rgb(' + red + ',0,0)';
+    document.getElementById('display-green').style.background = 'rgb(0,' + green + ',0)';
+    document.getElementById('display-blue').style.background = 'rgb(0,0,' + blue + ')';
 }
 
 function update_from1(color){
