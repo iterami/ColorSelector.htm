@@ -37,12 +37,12 @@ function repo_init(){
         },
         'wcag-background': {
           'oninput': function(){
-              update_wcag('wcag-background');
+              update_wcag(this.id);
           },
         },
         'wcag-background-color': {
           'oninput': function(){
-              update_wcag('wcag-background-color');
+              update_wcag(this.id);
           },
         },
         'wcag-background-use': {
@@ -52,12 +52,12 @@ function repo_init(){
         },
         'wcag-foreground': {
           'oninput': function(){
-              update_wcag('wcag-foreground');
+              update_wcag(this.id);
           },
         },
         'wcag-foreground-color': {
           'oninput': function(){
-              update_wcag('wcag-foreground-color');
+              update_wcag(this.id);
           },
         },
         'wcag-foreground-use': {
