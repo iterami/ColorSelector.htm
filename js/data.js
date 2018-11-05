@@ -22,13 +22,12 @@ function calculate_wcag(source, offset){
 
 function darken_lighten(change){
     let hex = document.getElementById('hex').value;
-    let hexlength = hex.length === 3;
 
     // Get colors.
     let blue =
       (eval(
         Number.parseInt(
-          hexlength
+          hex.length === 3
             ? hex.substring(2, 3) + hex.substring(2, 3)
             : hex.substring(4, 6),
           16
@@ -37,7 +36,7 @@ function darken_lighten(change){
     let green =
       (eval(
         Number.parseInt(
-          hexlength
+          hex.length === 3
             ? hex.substring(1, 2) + hex.substring(1, 2)
             : hex.substring(2, 4),
           16
@@ -46,7 +45,7 @@ function darken_lighten(change){
     let red =
       (eval(
         Number.parseInt(
-          hexlength
+          hex.length === 3
             ? hex.substring(0, 1) + hex.substring(0, 1)
             : hex.substring(0, 2),
           16
@@ -257,25 +256,24 @@ function update_fromhex(){
     // Update values of slider/text inputs when hex input is changed.
     // Hex length of 3 is valid.
     let hex = document.getElementById('hex').value;
-    let hexlength = hex.length === 3;
 
     document.getElementById('blue-255').value =
       Number.parseInt(
-        hexlength
+        hex.length === 3
           ? hex.substring(2, 3) + hex.substring(2, 3)
           : hex.substring(4, 6),
         16
       );
     document.getElementById('green-255').value =
       Number.parseInt(
-        hexlength
+        hex.length === 3
           ? hex.substring(1, 2) + hex.substring(1, 2)
           : hex.substring(2, 4),
         16
       );
     document.getElementById('red-255').value =
       Number.parseInt(
-        hexlength
+        hex.length === 3
           ? hex.substring(0, 1) + hex.substring(0, 1)
           : hex.substring(0, 2),
         16
