@@ -15,7 +15,7 @@ function calculate_wcag(source, offset){
     return math <= .03928
       ? math / 12.92
       : Math.pow(
-        ((math + .055) / 1.055),
+        (math + .055) / 1.055,
         2.4
       );
 }
