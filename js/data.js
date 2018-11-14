@@ -24,83 +24,64 @@ function darken_lighten(change){
     let hex = document.getElementById('hex').value;
 
     // Get colors.
-    let blue =
-      (eval(
-        Number.parseInt(
-          hex.length === 3
-            ? hex.substring(2, 3) + hex.substring(2, 3)
-            : hex.substring(4, 6),
-          16
-        )
-      ) / 51) * .2;
-    let green =
-      (eval(
-        Number.parseInt(
-          hex.length === 3
-            ? hex.substring(1, 2) + hex.substring(1, 2)
-            : hex.substring(2, 4),
-          16
-        )
-      ) / 51) * .2;
-    let red =
-      (eval(
-        Number.parseInt(
-          hex.length === 3
-            ? hex.substring(0, 1) + hex.substring(0, 1)
-            : hex.substring(0, 2),
-          16
-        )
-      ) / 51) * .2;
+    let blue = Number.parseInt(
+      hex.length === 3
+        ? hex.substring(2, 3) + hex.substring(2, 3)
+        : hex.substring(4, 6),
+      16
+    ) / 51 * .2;
+    let green = Number.parseInt(
+      hex.length === 3
+        ? hex.substring(1, 2) + hex.substring(1, 2)
+        : hex.substring(2, 4),
+      16
+    ) / 51 * .2;
+    let red = Number.parseInt(
+      hex.length === 3
+        ? hex.substring(0, 1) + hex.substring(0, 1)
+        : hex.substring(0, 2),
+      16
+    ) / 51 * .2;
 
-    let Max = 0;
-    let Min = 0;
-
-    Max = eval(eval(red) >= eval(green)
+    let max = red >= green
       ? red
-      : green
-    );
-    if(eval(blue) > eval(Max)){
-        Max = eval(blue);
+      : green;
+    if(blue > max){
+        max = blue;
     }
-    Min = eval(eval(red) <= eval(green)
+    let min = red <= green
       ? red
-      : green
-    );
-    if(eval(blue) < eval(Min)){
-        Min = eval(blue);
+      : green;
+    if(blue < min){
+        min = blue;
     }
 
     let H = 0;
-    let L = Math.round(
-      (eval(Max) + eval(Min)) * 50
-    );
+    let luminosity = Math.round((min + max) * 50);
     let S = 0;
 
-    // Luminosity calculations.
-    L = (L + (change ? 6.25 : -6.25)) / 100;
-    if(L > 1){
-        L = 1;
+    luminosity = (luminosity + (change ? 6.25 : -6.25)) / 100;
+    if(luminosity > 1){
+        luminosity = 1;
 
-    }else if(L < 0){
-        L = 0;
+    }else if(luminosity < 0){
+        luminosity = 0;
     }
 
-    if(eval(Max) != eval(Min)){
-        let dx = (eval(Max) - eval(Min));
-        if(red === Max){
-            H = (eval(green) - eval(blue)) / dx;
+    if(min !== max){
+        let dx = max - min;
+        if(red === max){
+            H = (green - blue) / dx;
         }
-        if(green === Max){
-            H = 2 + (eval(blue) - eval(red)) / dx;
+        if(green === max){
+            H = 2 + (blue - red) / dx;
         }
-        if(blue === Max){
-            H = 4 + (eval(red) - eval(green)) / dx;
+        if(blue === max){
+            H = 4 + (red - green) / dx;
         }
-        S = dx
-          / (L<.5
-            ? eval(Max) + eval(Min)
-            : 2 - eval(Max) - eval(Min)
-          );
+        S = dx / (luminosity < .5
+          ? min + max
+          : 2 - min - max);
     }
 
     H = Math.round(H * 60);
@@ -111,10 +92,10 @@ function darken_lighten(change){
         H -= 360;
     }
 
-    let temp = L < .5
-      ? L * (1 + S)
-      : L + S - (L * S);
-    let temp2 = 2 * L - temp;
+    let temp = luminosity < .5
+      ? luminosity * (1 + S)
+      : luminosity + S - (luminosity * S);
+    let temp2 = 2 * luminosity - temp;
     red = Math.round(
       darken_lighten_math(
         temp2,
