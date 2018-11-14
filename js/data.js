@@ -154,10 +154,9 @@ function darken_lighten_math(d0, d1, d2){
 
     }else if(d2 < 240){
         return d0 + (d1 - d0) * (240 - d2) / 60;
-
-    }else{
-        return d0;
     }
+
+    return d0;
 }
 
 function hexvalues(i){
