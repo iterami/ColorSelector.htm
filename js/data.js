@@ -56,65 +56,65 @@ function darken_lighten(change){
         min = blue;
     }
 
-    let H = 0;
-    let luminosity = Math.round((min + max) * 50);
-    let S = 0;
+    let hue = 0;
+    let lightness = Math.round((min + max) * 50);
+    let saturation = 0;
 
-    luminosity = (luminosity + (change ? 6.25 : -6.25)) / 100;
-    if(luminosity > 1){
-        luminosity = 1;
+    lightness = (lightness + (change ? 6.25 : -6.25)) / 100;
+    if(lightness > 1){
+        lightness = 1;
 
-    }else if(luminosity < 0){
-        luminosity = 0;
+    }else if(lightness < 0){
+        lightness = 0;
     }
 
     if(min !== max){
         let dx = max - min;
         if(red === max){
-            H = (green - blue) / dx;
+            hue = (green - blue) / dx;
         }
         if(green === max){
-            H = 2 + (blue - red) / dx;
+            hue = 2 + (blue - red) / dx;
         }
         if(blue === max){
-            H = 4 + (red - green) / dx;
+            hue = 4 + (red - green) / dx;
         }
-        S = dx / (luminosity < .5
+        saturation = dx / (lightness < .5
           ? min + max
           : 2 - min - max);
     }
 
-    H = Math.round(H * 60);
-    if(H < 0){
-        H += 360;
+    hue = Math.round(hue * 60);
+    if(hue < 0){
+        hue += 360;
 
-    }else if(H >= 360){
-        H -= 360;
+    }else if(hue >= 360){
+        hue -= 360;
     }
 
-    let temp = luminosity < .5
-      ? luminosity * (1 + S)
-      : luminosity + S - (luminosity * S);
-    let temp2 = 2 * luminosity - temp;
+    let temp = lightness < .5
+      ? lightness * (1 + saturation)
+      : lightness + saturation - (lightness * saturation);
+    let temp2 = 2 * lightness - temp;
     red = Math.round(
       darken_lighten_math(
         temp2,
         temp,
-        H + 120
+        hue + 120
       ) * 255
     );
     green = Math.round(
       darken_lighten_math(
         temp2,
         temp,
-        H
+        hue
       ) * 255
     );
     blue = Math.round(
       darken_lighten_math(
         temp2,
         temp,
-        H - 120
+        hue - 120
       ) * 255
     );
 
