@@ -114,6 +114,9 @@ function repo_init(){
               random_color('blue');
           },
         },
+        89: {
+          'todo': set_grayscale,
+        },
       },
       'title': 'ColorSelector.htm',
     });
