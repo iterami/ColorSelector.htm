@@ -178,6 +178,26 @@ function random_color(color){
     }
 }
 
+function set_grayscale(){
+    let blue_element = document.getElementById('blue');
+    let green_element = document.getElementById('green');
+    let red_element = document.getElementById('red');
+
+    let blue = Number.parseInt(blue_element.value, 10);
+    let green = Number.parseInt(green_element.value, 10);
+    let red = Number.parseInt(red_element.value, 10);
+
+    let average = (blue + green + red) / 3;
+
+    blue_element.value = average;
+    green_element.value = average;
+    red_element.value = average;
+
+    update_fromslider('blue');
+    update_fromslider('green');
+    update_fromslider('red');
+}
+
 function update_display(){
     let blue = Number.parseInt(document.getElementById('blue').value, 10);
     let green = Number.parseInt(document.getElementById('green').value, 10);

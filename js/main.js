@@ -13,6 +13,9 @@ function repo_init(){
               darken_lighten(0);
           },
         },
+        'grayscale': {
+          'onclick': set_grayscale,
+        },
         'hex': {
           'oninput': update_fromhex,
         },
