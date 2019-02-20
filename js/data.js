@@ -60,7 +60,7 @@ function darken_lighten(change){
     let lightness = Math.round((min + max) * 50);
     let saturation = 0;
 
-    lightness = (lightness + (change ? 6.25 : -6.25)) / 100;
+    lightness = (lightness + change * 6.25) / 100;
     if(lightness > 1){
         lightness = 1;
 

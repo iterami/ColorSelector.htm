@@ -10,7 +10,7 @@ function repo_init(){
         },
         'darken': {
           'onclick': function(){
-              darken_lighten(0);
+              darken_lighten(-1);
           },
         },
         'grayscale': {
@@ -83,7 +83,7 @@ function repo_init(){
         },
         75: {
           'todo': function(){
-              darken_lighten(0);
+              darken_lighten(-1);
           },
         },
         76: {
