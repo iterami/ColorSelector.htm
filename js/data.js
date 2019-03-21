@@ -247,7 +247,9 @@ function update_from255(color){
       : color_value;
     document.getElementById(color + '-1').value = color_value.length < 1
       ? 0
-      : (color_value / 255).toFixed(7);
+      : core_round({
+          'number': color_value / 255,
+        });
 
     update_display();
 }
@@ -289,7 +291,9 @@ function update_fromhex(){
 function update_fromslider(color){
     // Update values of hex and text inputs when slider is slided.
     let color_value = document.getElementById(color).value;
-    document.getElementById(color + '-1').value = (color_value / 255).toFixed(7);
+    document.getElementById(color + '-1').value = core_round({
+      'number': color_value / 255,
+    });
     document.getElementById(color + '-255').value = color_value;
 
     update_display();
