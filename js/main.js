@@ -72,94 +72,50 @@ function repo_init(){
       'keybinds': {
         71: {
           'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
               random_color('green');
           },
         },
         72: {
           'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
               document.getElementById('hex').value = core_random_hex();
               update_fromhex();
           },
         },
         75: {
           'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
               darken_lighten(-1);
           },
         },
         76: {
           'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
               darken_lighten(1);
           },
         },
         78: {
           'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
               wcag_set('background');
           },
         },
         79: {
           'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
               wcag_set('foreground');
           },
         },
         82: {
           'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
               random_color('red');
           },
         },
         83: {
-          'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
-              wcag_switch();
-          }
+          'todo': wcag_switch,
         },
         85: {
           'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
               random_color('blue');
           },
         },
         89: {
-          'todo': function(event){
-              if(event.ctrlKey){
-                  return;
-              }
-
-              set_grayscale();
-          },
+          'todo': set_grayscale,
         },
       },
       'storage': {
