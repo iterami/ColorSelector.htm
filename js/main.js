@@ -71,51 +71,95 @@ function repo_init(){
       },
       'keybinds': {
         71: {
-          'todo': function(){
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
               random_color('green');
           },
         },
         72: {
-          'todo': function(){
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
               document.getElementById('hex').value = core_random_hex();
               update_fromhex();
           },
         },
         75: {
-          'todo': function(){
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
               darken_lighten(-1);
           },
         },
         76: {
-          'todo': function(){
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
               darken_lighten(1);
           },
         },
         78: {
-          'todo': function(){
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
               wcag_set('background');
           },
         },
         79: {
-          'todo': function(){
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
               wcag_set('foreground');
           },
         },
         82: {
-          'todo': function(){
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
               random_color('red');
           },
         },
         83: {
-          'todo': wcag_switch,
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
+              wcag_switch();
+          }
         },
         85: {
-          'todo': function(){
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
               random_color('blue');
           },
         },
         89: {
-          'todo': set_grayscale,
+          'todo': function(event){
+              if(event.ctrlKey){
+                  return;
+              }
+
+              set_grayscale();
+          },
         },
       },
       'storage': {
