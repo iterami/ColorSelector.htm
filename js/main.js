@@ -118,15 +118,15 @@ function repo_init(){
           'todo': set_grayscale,
         },
       },
+      'storage': {
+        'hex': '000000',
+      },
       'title': 'ColorSelector.htm',
     });
 
     document.getElementById('wcag-background-color').value = '#000000';
     document.getElementById('wcag-foreground-color').value = '#ffffff';
     update_wcag('wcag-foreground-color');
-
-    document.getElementById('hex').value = core_random_hex();
-    update_fromhex();
 
     let colors = [
       'blue',
@@ -159,4 +159,7 @@ function repo_init(){
             update_hex();
         };
     }
+
+    core_storage_update();
+    update_fromhex();
 }
