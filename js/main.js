@@ -75,12 +75,6 @@ function repo_init(){
               random_color('green');
           },
         },
-        72: {
-          'todo': function(event){
-              document.getElementById('hex').value = core_random_hex();
-              update_fromhex();
-          },
-        },
         75: {
           'todo': function(event){
               darken_lighten(-1);
@@ -112,6 +106,12 @@ function repo_init(){
         85: {
           'todo': function(event){
               random_color('blue');
+          },
+        },
+        88: {
+          'todo': function(event){
+              document.getElementById('hex').value = core_random_hex();
+              update_fromhex();
           },
         },
         89: {
