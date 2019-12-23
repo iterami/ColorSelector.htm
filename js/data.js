@@ -216,12 +216,13 @@ function update_display(){
 function update_from1(color){
     // Update value of slider when 0-1 text input is changed
     //   and validate 0-1 text input value isn't less than 0 or greater than 1.
-    let color_value = document.getElementById(color + '-1').value;
+    let color_element = document.getElementById(color + '-1');
+    let color_value = color_element.value;
     if(Number.isNaN(color_value)
       || color_value < 0
       || color_value > 1){
         color_value = 0;
-        document.getElementById(color + '-1').value = color_value;
+        color_element.value = color_value;
     }
 
     color_value = Math.round(color_value * 255);
@@ -233,15 +234,16 @@ function update_from1(color){
 function update_from255(color){
     // Update value of slider when 0-255 text input is changed
     //   and validate 0-255 text input value is a number that isn't less than 0 or greater than 255.
-    let color_value = document.getElementById(color + '-255').value;
+    let color_element = document.getElementById(color + '-255');
+    let color_value = color_element.value;
     if(Number.isNaN(color_value)
       || color_value < 0
       || color_value > 255){
-        document.getElementById(color + '-255').value = 0;
+        color_element.value = 0;
     }
 
     // If 0-255 text input length is 0, just use color value of 0 instead of messing with user input.
-    color_value = document.getElementById(color + '-255').value;
+    color_value = color_element.value;
     document.getElementById(color).value = color_value.length < 1
       ? 0
       : color_value;
@@ -363,10 +365,12 @@ function update_wcag(source){
 
     let background = document.getElementById('wcag-background-color').value;
     let foreground = document.getElementById('wcag-foreground-color').value;
-    document.getElementById('wcag-text-normal').style.backgroundColor = background;
-    document.getElementById('wcag-text-normal').style.color = foreground;
-    document.getElementById('wcag-text-large').style.backgroundColor = background;
-    document.getElementById('wcag-text-large').style.color = foreground;
+    let text_large = document.getElementById('wcag-text-large');
+    text_large.style.backgroundColor = background;
+    text_large.style.color = foreground;
+    let text_normal = document.getElementById('wcag-text-normal');
+    text_normal.style.backgroundColor = background;
+    text_normal.style.color = foreground;
 
     document.getElementById('display-background').style.backgroundColor = background;
     document.getElementById('display-foreground').style.backgroundColor = foreground;
