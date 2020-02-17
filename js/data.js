@@ -2,7 +2,7 @@
 
 function calculate_wcag(source, offset){
     source = document.getElementById(source).value;
-    let math = Number.parseInt(
+    const math = Number.parseInt(
       source.length === 4
         ? source[offset / 2] + source[offset / 2]
         : source.substring(
@@ -21,7 +21,7 @@ function calculate_wcag(source, offset){
 }
 
 function darken_lighten(change){
-    let hex = document.getElementById('hex').value;
+    const hex = document.getElementById('hex').value;
 
     // Get colors.
     let blue = Number.parseInt(
@@ -69,7 +69,7 @@ function darken_lighten(change){
     }
 
     if(min !== max){
-        let dx = max - min;
+        const dx = max - min;
         if(red === max){
             hue = (green - blue) / dx;
         }
@@ -92,10 +92,10 @@ function darken_lighten(change){
         hue -= 360;
     }
 
-    let temp = lightness < .5
+    const temp = lightness < .5
       ? lightness * (1 + saturation)
       : lightness + saturation - (lightness * saturation);
-    let temp2 = 2 * lightness - temp;
+    const temp2 = 2 * lightness - temp;
     red = Math.round(
       darken_lighten_math(
         temp2,
@@ -179,15 +179,15 @@ function random_color(color){
 }
 
 function set_grayscale(){
-    let blue_element = document.getElementById('blue');
-    let green_element = document.getElementById('green');
-    let red_element = document.getElementById('red');
+    const blue_element = document.getElementById('blue');
+    const green_element = document.getElementById('green');
+    const red_element = document.getElementById('red');
 
-    let blue = Number.parseInt(blue_element.value, 10);
-    let green = Number.parseInt(green_element.value, 10);
-    let red = Number.parseInt(red_element.value, 10);
+    const blue = Number.parseInt(blue_element.value, 10);
+    const green = Number.parseInt(green_element.value, 10);
+    const red = Number.parseInt(red_element.value, 10);
 
-    let average = (blue + green + red) / 3;
+    const average = (blue + green + red) / 3;
 
     blue_element.value = average;
     green_element.value = average;
@@ -199,9 +199,9 @@ function set_grayscale(){
 }
 
 function update_display(){
-    let blue = Number.parseInt(document.getElementById('blue').value, 10);
-    let green = Number.parseInt(document.getElementById('green').value, 10);
-    let red = Number.parseInt(document.getElementById('red').value, 10);
+    const blue = Number.parseInt(document.getElementById('blue').value, 10);
+    const green = Number.parseInt(document.getElementById('green').value, 10);
+    const red = Number.parseInt(document.getElementById('red').value, 10);
 
     // Set hex-color value to hex value.
     document.getElementById('hex-color').value = '#' + document.getElementById('hex').value;
@@ -216,7 +216,7 @@ function update_display(){
 function update_from1(color){
     // Update value of slider when 0-1 text input is changed
     //   and validate 0-1 text input value isn't less than 0 or greater than 1.
-    let color_element = document.getElementById(color + '-1');
+    const color_element = document.getElementById(color + '-1');
     let color_value = color_element.value;
     if(Number.isNaN(color_value)
       || color_value < 0
@@ -234,7 +234,7 @@ function update_from1(color){
 function update_from255(color){
     // Update value of slider when 0-255 text input is changed
     //   and validate 0-255 text input value is a number that isn't less than 0 or greater than 255.
-    let color_element = document.getElementById(color + '-255');
+    const color_element = document.getElementById(color + '-255');
     let color_value = color_element.value;
     if(Number.isNaN(color_value)
       || color_value < 0
@@ -259,7 +259,7 @@ function update_from255(color){
 function update_fromhex(){
     // Update values of slider/text inputs when hex input is changed.
     // Hex length of 3 is valid.
-    let hex = document.getElementById('hex').value;
+    const hex = document.getElementById('hex').value;
 
     document.getElementById('blue-255').value =
       Number.parseInt(
@@ -292,7 +292,7 @@ function update_fromhex(){
 
 function update_fromslider(color){
     // Update values of hex and text inputs when slider is slided.
-    let color_value = document.getElementById(color).value;
+    const color_value = document.getElementById(color).value;
     document.getElementById(color + '-1').value = core_round({
       'number': color_value / 255,
     });
@@ -304,9 +304,9 @@ function update_fromslider(color){
 
 function update_hex(){
     // Update the hex value based on slider values.
-    let red = Math.max(0, Math.min(Number.parseInt(document.getElementById('red').value, 10), 255));
-    let green = Math.max(0, Math.min(Number.parseInt(document.getElementById('green').value, 10), 255));
-    let blue = Math.max(0, Math.min(Number.parseInt(document.getElementById('blue').value, 10), 255));
+    const red = Math.max(0, Math.min(Number.parseInt(document.getElementById('red').value, 10), 255));
+    const green = Math.max(0, Math.min(Number.parseInt(document.getElementById('green').value, 10), 255));
+    const blue = Math.max(0, Math.min(Number.parseInt(document.getElementById('blue').value, 10), 255));
 
     document.getElementById('hex').value =
       hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
@@ -317,26 +317,26 @@ function update_hex(){
 }
 
 function update_wcag(source){
-    let source_element = document.getElementById(source);
-    let other_input = source.endsWith('-color')
+    const source_element = document.getElementById(source);
+    const other_input = source.endsWith('-color')
       ? source.slice(0, -6)
       : source + '-color';
     document.getElementById(other_input).value = source_element.value.length === 4
       ? '#' + source_element.value[1] + source_element.value[1] + source_element.value[2] + source_element.value[2] + source_element.value[3] + source_element.value[3]
       : source_element.value;
 
-    let background_math =
+    const background_math =
       (.2126 * calculate_wcag('wcag-background-color', 2)
       + .7152 * calculate_wcag('wcag-background-color', 4)
       + .0722 * calculate_wcag('wcag-background-color', 6)
     );
-    let foreground_math =
+    const foreground_math =
       (.2126 * calculate_wcag('wcag-foreground-color', 2)
       + .7152 * calculate_wcag('wcag-foreground-color', 4)
       + .0722 * calculate_wcag('wcag-foreground-color', 6)
     );
 
-    let wcag_score = Math.round(
+    const wcag_score = Math.round(
       (Math.max(background_math, foreground_math) + .05)
       / (Math.min(background_math, foreground_math) + .05)
       * 10
@@ -363,12 +363,12 @@ function update_wcag(source){
         : 'Failed'
       );
 
-    let background = document.getElementById('wcag-background-color').value;
-    let foreground = document.getElementById('wcag-foreground-color').value;
-    let text_large = document.getElementById('wcag-text-large');
+    const background = document.getElementById('wcag-background-color').value;
+    const foreground = document.getElementById('wcag-foreground-color').value;
+    const text_large = document.getElementById('wcag-text-large');
     text_large.style.backgroundColor = background;
     text_large.style.color = foreground;
-    let text_normal = document.getElementById('wcag-text-normal');
+    const text_normal = document.getElementById('wcag-text-normal');
     text_normal.style.backgroundColor = background;
     text_normal.style.color = foreground;
 
@@ -383,10 +383,10 @@ function wcag_set(target){
 }
 
 function wcag_switch(){
-    let background_element = document.getElementById('wcag-background-color');
-    let foreground_element = document.getElementById('wcag-foreground-color');
+    const background_element = document.getElementById('wcag-background-color');
+    const foreground_element = document.getElementById('wcag-foreground-color');
 
-    let background = background_element.value;
+    const background = background_element.value;
     background_element.value = foreground_element.value;
     foreground_element.value = background;
 

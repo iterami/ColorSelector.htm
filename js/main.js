@@ -128,14 +128,14 @@ function repo_init(){
     document.getElementById('wcag-foreground-color').value = '#ffffff';
     update_wcag('wcag-foreground-color');
 
-    let colors = [
+    const colors = [
       'blue',
       'green',
       'red',
     ];
-    for(let color in colors){
+    for(const color in colors){
         document.getElementById(colors[color] + '-random').onclick = function(){
-            let id = this.id;
+            const id = this.id;
             // Event fires when color button is clicked.
             random_color(id.substring(0, id.indexOf('-')));
         };
@@ -146,14 +146,14 @@ function repo_init(){
         };
 
         document.getElementById(colors[color] + '-1').oninput = function(){
-            let id = this.id;
+            const id = this.id;
             // Event fires when user changes colors[color] 1 text input.
             update_from1(id.substring(0, id.indexOf('-')));
             update_hex();
         };
 
         document.getElementById(colors[color] + '-255').oninput = function(){
-            let id = this.id;
+            const id = this.id;
             // Event fires when user changes colors[color] 255 text input.
             update_from255(id.substring(0, id.indexOf('-')));
             update_hex();
