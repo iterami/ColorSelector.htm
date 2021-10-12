@@ -316,24 +316,16 @@ function update_hex(){
     update_display();
 }
 
-function update_wcag(source){
-    const source_element = document.getElementById(source);
-    const other_input = source.endsWith('-color')
-      ? source.slice(0, -6)
-      : source + '-color';
-    document.getElementById(other_input).value = source_element.value.length === 4
-      ? '#' + source_element.value[1] + source_element.value[1] + source_element.value[2] + source_element.value[2] + source_element.value[3] + source_element.value[3]
-      : source_element.value;
-
+function update_wcag(){
     const background_math =
-      (.2126 * calculate_wcag('wcag-background-color', 2)
-      + .7152 * calculate_wcag('wcag-background-color', 4)
-      + .0722 * calculate_wcag('wcag-background-color', 6)
+      (.2126 * calculate_wcag('wcag-background', 2)
+      + .7152 * calculate_wcag('wcag-background', 4)
+      + .0722 * calculate_wcag('wcag-background', 6)
     );
     const foreground_math =
-      (.2126 * calculate_wcag('wcag-foreground-color', 2)
-      + .7152 * calculate_wcag('wcag-foreground-color', 4)
-      + .0722 * calculate_wcag('wcag-foreground-color', 6)
+      (.2126 * calculate_wcag('wcag-foreground', 2)
+      + .7152 * calculate_wcag('wcag-foreground', 4)
+      + .0722 * calculate_wcag('wcag-foreground', 6)
     );
 
     const wcag_score = Math.round(
@@ -363,8 +355,8 @@ function update_wcag(source){
         : 'Failed'
       );
 
-    const background = document.getElementById('wcag-background-color').value;
-    const foreground = document.getElementById('wcag-foreground-color').value;
+    const background = document.getElementById('wcag-background').value;
+    const foreground = document.getElementById('wcag-foreground').value;
     const text_large = document.getElementById('wcag-text-large');
     text_large.style.backgroundColor = background;
     text_large.style.color = foreground;
@@ -377,19 +369,17 @@ function update_wcag(source){
 }
 
 function wcag_set(target){
-    document.getElementById('wcag-' + target + '-color').value = '#' + document.getElementById('hex').value;
-
-    update_wcag('wcag-' + target + '-color');
+    document.getElementById('wcag-' + target).value = '#' + document.getElementById('hex').value;
+    update_wcag();
 }
 
 function wcag_switch(){
-    const background_element = document.getElementById('wcag-background-color');
-    const foreground_element = document.getElementById('wcag-foreground-color');
+    const background_element = document.getElementById('wcag-background');
+    const foreground_element = document.getElementById('wcag-foreground');
 
     const background = background_element.value;
     background_element.value = foreground_element.value;
     foreground_element.value = background;
 
-    update_wcag('wcag-background-color');
-    update_wcag('wcag-foreground-color');
+    update_wcag();
 }

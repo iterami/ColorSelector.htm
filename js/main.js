@@ -39,14 +39,7 @@ function repo_init(){
           'onclick': wcag_switch,
         },
         'wcag-background': {
-          'oninput': function(){
-              update_wcag(this.id);
-          },
-        },
-        'wcag-background-color': {
-          'oninput': function(){
-              update_wcag(this.id);
-          },
+          'oninput': update_wcag,
         },
         'wcag-background-use': {
           'onclick': function(){
@@ -54,14 +47,7 @@ function repo_init(){
           },
         },
         'wcag-foreground': {
-          'oninput': function(){
-              update_wcag(this.id);
-          },
-        },
-        'wcag-foreground-color': {
-          'oninput': function(){
-              update_wcag(this.id);
-          },
+          'oninput': update_wcag,
         },
         'wcag-foreground-use': {
           'onclick': function(){
@@ -124,9 +110,9 @@ function repo_init(){
       'title': 'ColorSelector.htm',
     });
 
-    document.getElementById('wcag-background-color').value = '#000000';
-    document.getElementById('wcag-foreground-color').value = '#ffffff';
-    update_wcag('wcag-foreground-color');
+    document.getElementById('wcag-background').value = '#000000';
+    document.getElementById('wcag-foreground').value = '#ffffff';
+    update_wcag();
 
     const colors = [
       'blue',
