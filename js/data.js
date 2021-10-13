@@ -218,7 +218,7 @@ function update_from1(color){
     //   and validate 0-1 text input value isn't less than 0 or greater than 1.
     const color_element = document.getElementById(color + '-1');
     let color_value = color_element.value;
-    if(Number.isNaN(color_value)
+    if(globalThis.isNaN(color_value)
       || color_value < 0
       || color_value > 1){
         color_value = 0;
@@ -236,7 +236,7 @@ function update_from255(color){
     //   and validate 0-255 text input value is a number that isn't less than 0 or greater than 255.
     const color_element = document.getElementById(color + '-255');
     let color_value = color_element.value;
-    if(Number.isNaN(color_value)
+    if(globalThis.isNaN(color_value)
       || color_value < 0
       || color_value > 255){
         color_element.value = 0;
