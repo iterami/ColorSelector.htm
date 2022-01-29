@@ -122,25 +122,21 @@ function repo_init(){
     for(const color in colors){
         document.getElementById(colors[color] + '-random').onclick = function(){
             const id = this.id;
-            // Event fires when color button is clicked.
             random_color(id.substring(0, id.indexOf('-')));
         };
 
         document.getElementById(colors[color]).oninput = function(){
-            // Event fires when colors[color] slider is being slided.
             update_fromslider(this.id);
         };
 
         document.getElementById(colors[color] + '-1').oninput = function(){
             const id = this.id;
-            // Event fires when user changes colors[color] 1 text input.
             update_from1(id.substring(0, id.indexOf('-')));
             update_hex();
         };
 
         document.getElementById(colors[color] + '-255').oninput = function(){
             const id = this.id;
-            // Event fires when user changes colors[color] 255 text input.
             update_from255(id.substring(0, id.indexOf('-')));
             update_hex();
         };

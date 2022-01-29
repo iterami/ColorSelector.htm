@@ -23,7 +23,6 @@ function calculate_wcag(source, offset){
 function darken_lighten(change){
     const hex = document.getElementById('hex').value;
 
-    // Get colors.
     let blue = Number.parseInt(
       hex.length === 3
         ? hex.substring(2, 3) + hex.substring(2, 3)
@@ -203,19 +202,14 @@ function update_display(){
     const green = Number.parseInt(document.getElementById('green').value, 10);
     const red = Number.parseInt(document.getElementById('red').value, 10);
 
-    // Set hex-color value to hex value.
-    document.getElementById('hex-color').value = '#' + document.getElementById('hex').value;
-
-    // Update the background color for each display.
+    document.getElementById('display-blue').style.background = 'rgb(0,0,' + blue + ')';
+    document.getElementById('display-green').style.background = 'rgb(0,' + green + ',0)';
     document.getElementById('display-hex').style.background = 'rgb(' + red + ',' + green + ',' + blue + ')';
     document.getElementById('display-red').style.background = 'rgb(' + red + ',0,0)';
-    document.getElementById('display-green').style.background = 'rgb(0,' + green + ',0)';
-    document.getElementById('display-blue').style.background = 'rgb(0,0,' + blue + ')';
+    document.getElementById('hex-color').value = '#' + document.getElementById('hex').value;
 }
 
 function update_from1(color){
-    // Update value of slider when 0-1 text input is changed
-    //   and validate 0-1 text input value isn't less than 0 or greater than 1.
     const color_element = document.getElementById(color + '-1');
     let color_value = color_element.value;
     if(globalThis.isNaN(color_value)
@@ -232,8 +226,6 @@ function update_from1(color){
 }
 
 function update_from255(color){
-    // Update value of slider when 0-255 text input is changed
-    //   and validate 0-255 text input value is a number that isn't less than 0 or greater than 255.
     const color_element = document.getElementById(color + '-255');
     let color_value = color_element.value;
     if(globalThis.isNaN(color_value)
@@ -242,7 +234,6 @@ function update_from255(color){
         color_element.value = 0;
     }
 
-    // If 0-255 text input length is 0, just use color value of 0 instead of messing with user input.
     color_value = color_element.value;
     document.getElementById(color).value = color_value.length < 1
       ? 0
@@ -257,8 +248,6 @@ function update_from255(color){
 }
 
 function update_fromhex(){
-    // Update values of slider/text inputs when hex input is changed.
-    // Hex length of 3 is valid.
     const hex = document.getElementById('hex').value;
 
     document.getElementById('blue-255').value =
@@ -291,7 +280,6 @@ function update_fromhex(){
 }
 
 function update_fromslider(color){
-    // Update values of hex and text inputs when slider is slided.
     const color_value = document.getElementById(color).value;
     document.getElementById(color + '-1').value = core_round({
       'number': color_value / 255,
@@ -303,7 +291,6 @@ function update_fromslider(color){
 }
 
 function update_hex(){
-    // Update the hex value based on slider values.
     const red = Math.max(0, Math.min(Number.parseInt(document.getElementById('red').value, 10), 255));
     const green = Math.max(0, Math.min(Number.parseInt(document.getElementById('green').value, 10), 255));
     const blue = Math.max(0, Math.min(Number.parseInt(document.getElementById('blue').value, 10), 255));
