@@ -222,7 +222,7 @@ function update_from1(color){
     color_value = Math.round(color_value * 255);
     document.getElementById(color).value = color_value;
     document.getElementById(color + '-255').value = color_value;
-    update_display();
+    update_hex();
 }
 
 function update_from255(color){
@@ -244,11 +244,16 @@ function update_from255(color){
           'number': color_value / 255,
         });
 
-    update_display();
+    update_hex();
 }
 
 function update_fromhex(){
     const hex = document.getElementById('hex').value;
+
+    if(hex.length !== 3
+      && hex.length !== 6){
+        return;
+    }
 
     document.getElementById('blue-255').value =
       Number.parseInt(
@@ -276,7 +281,7 @@ function update_fromhex(){
     update_from255('green');
     update_from255('red');
 
-    update_display();
+    update_hex();
 }
 
 function update_fromslider(color){
@@ -286,7 +291,6 @@ function update_fromslider(color){
     });
     document.getElementById(color + '-255').value = color_value;
 
-    update_display();
     update_hex();
 }
 
