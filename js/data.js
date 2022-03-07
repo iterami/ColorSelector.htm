@@ -42,18 +42,16 @@ function darken_lighten(change){
       16
     ) / 51 * .2;
 
-    let max = red >= green
-      ? red
-      : green;
-    if(blue > max){
-        max = blue;
-    }
-    let min = red <= green
-      ? red
-      : green;
-    if(blue < min){
-        min = blue;
-    }
+    const max = Math.max(
+      blue,
+      green,
+      red
+    );
+    const min = Math.min(
+      blue,
+      green,
+      red
+    );
 
     let hue = 0;
     let lightness = Math.round((min + max) * 50);
