@@ -199,12 +199,17 @@ function update_display(){
     const blue = Number.parseInt(document.getElementById('blue').value, 10);
     const green = Number.parseInt(document.getElementById('green').value, 10);
     const red = Number.parseInt(document.getElementById('red').value, 10);
+    const hex_background = 'rgb(' + red + ',' + green + ',' + blue + ')'
 
     document.getElementById('display-blue').style.background = 'rgb(0,0,' + blue + ')';
     document.getElementById('display-green').style.background = 'rgb(0,' + green + ',0)';
-    document.getElementById('display-hex').style.background = 'rgb(' + red + ',' + green + ',' + blue + ')';
+    document.getElementById('display-hex').style.background = hex_background;
     document.getElementById('display-red').style.background = 'rgb(' + red + ',0,0)';
     document.getElementById('hex-color').value = '#' + document.getElementById('hex').value;
+
+    document.body.style.background = core_storage_data['background']
+      ? hex_background
+      : 'rgb(0,0,0)';
 }
 
 function update_from1(color){

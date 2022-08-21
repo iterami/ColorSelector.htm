@@ -105,8 +105,10 @@ function repo_init(){
         },
       },
       'storage': {
+        'background': false,
         'hex': '000000',
       },
+      'storage-menu': '<table><tr><td><input id=background type=checkbox><td>Background Color</table>',
       'title': 'ColorSelector.htm',
     });
 
