@@ -199,16 +199,16 @@ function update_display(){
     const blue = Number.parseInt(document.getElementById('blue').value, 10);
     const green = Number.parseInt(document.getElementById('green').value, 10);
     const red = Number.parseInt(document.getElementById('red').value, 10);
-    const hex_background = 'rgb(' + red + ',' + green + ',' + blue + ')'
+    const hex_backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')'
 
-    document.getElementById('display-blue').style.background = 'rgb(0,0,' + blue + ')';
-    document.getElementById('display-green').style.background = 'rgb(0,' + green + ',0)';
-    document.getElementById('display-hex').style.background = hex_background;
-    document.getElementById('display-red').style.background = 'rgb(' + red + ',0,0)';
+    document.getElementById('display-blue').style.backgroundColor = 'rgb(0,0,' + blue + ')';
+    document.getElementById('display-green').style.backgroundColor = 'rgb(0,' + green + ',0)';
+    document.getElementById('display-hex').style.backgroundColor = hex_backgroundColor;
+    document.getElementById('display-red').style.backgroundColor = 'rgb(' + red + ',0,0)';
     document.getElementById('hex-color').value = '#' + document.getElementById('hex').value;
 
-    document.body.style.background = core_storage_data['background']
-      ? hex_background
+    document.body.style.backgroundColor = core_storage_data['background']
+      ? hex_backgroundColor
       : 'rgb(0,0,0)';
 }
 
