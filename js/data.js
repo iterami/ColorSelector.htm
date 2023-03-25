@@ -200,16 +200,18 @@ function update_display(){
     const green = Number.parseInt(document.getElementById('green').value, 10);
     const red = Number.parseInt(document.getElementById('red').value, 10);
     const hex_backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')'
+    const hex_value = '#' + document.getElementById('hex').value;
 
     document.getElementById('display-blue').style.backgroundColor = 'rgb(0,0,' + blue + ')';
     document.getElementById('display-green').style.backgroundColor = 'rgb(0,' + green + ',0)';
     document.getElementById('display-hex').style.backgroundColor = hex_backgroundColor;
     document.getElementById('display-red').style.backgroundColor = 'rgb(' + red + ',0,0)';
-    document.getElementById('hex-color').value = '#' + document.getElementById('hex').value;
+    document.getElementById('hex-color').value = hex_value;
 
     document.body.style.backgroundColor = core_storage_data['background']
       ? hex_backgroundColor
       : 'rgb(0,0,0)';
+    document.title = hex_value;
 }
 
 function update_from1(color){
