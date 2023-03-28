@@ -211,7 +211,7 @@ function update_display(){
     document.body.style.backgroundColor = core_storage_data['background']
       ? hex_backgroundColor
       : 'rgb(0,0,0)';
-    document.title = hex_value;
+    document.title = hex_value + ' r' + red + ' g' + green + ' b' + blue;
 }
 
 function update_from1(color){
