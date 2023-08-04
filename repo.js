@@ -280,10 +280,12 @@ function repo_init(){
         },
       },
       'storage': {
-        'background': false,
+        'background-page': false,
+        'background-table': true,
         'hex': '000000',
       },
-      'storage-menu': '<table><tr><td><input id=background type=checkbox><td>Background Color</table>',
+      'storage-menu': '<table><tr><td><input id=background-page type=checkbox><td>Page Background Color'
+        +  '<tr><td><input id=background-table type=checkbox><td>Table Background Color</table>',
       'title': 'ColorSelector.htm',
     });
 
@@ -350,16 +352,18 @@ function update_display(){
     const hex_backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')'
     const hex_value = '#' + document.getElementById('hex').value;
 
-    document.getElementById('display-blue').style.backgroundColor = 'rgb(0,0,' + blue + ')';
-    document.getElementById('display-green').style.backgroundColor = 'rgb(0,' + green + ',0)';
-    document.getElementById('display-hex').style.backgroundColor = hex_backgroundColor;
-    document.getElementById('display-red').style.backgroundColor = 'rgb(' + red + ',0,0)';
     document.getElementById('hex-color').value = hex_value;
-
-    document.body.style.backgroundColor = core_storage_data['background']
-      ? hex_backgroundColor
-      : 'rgb(0,0,0)';
     document.title = hex_value + ' r' + red + ' g' + green + ' b' + blue + ' - ' + core_repo_title;
+
+    if(core_storage_data['background-table']){
+        document.getElementById('display-blue').style.backgroundColor = 'rgb(0,0,' + blue + ')';
+        document.getElementById('display-green').style.backgroundColor = 'rgb(0,' + green + ',0)';
+        document.getElementById('display-hex').style.backgroundColor = hex_backgroundColor;
+        document.getElementById('display-red').style.backgroundColor = 'rgb(' + red + ',0,0)';
+    }
+    if(core_storage_data['background-page']){
+        document.body.style.backgroundColor = hex_backgroundColor;
+    }
 }
 
 function update_from1(color){
@@ -508,8 +512,10 @@ function update_wcag(){
     text_normal.style.backgroundColor = background;
     text_normal.style.color = foreground;
 
-    document.getElementById('display-background').style.backgroundColor = background;
-    document.getElementById('display-foreground').style.backgroundColor = foreground;
+    if(core_storage_data['background-table']){
+        document.getElementById('display-background').style.backgroundColor = background;
+        document.getElementById('display-foreground').style.backgroundColor = foreground;
+    }
 }
 
 function wcag_set(target){
