@@ -397,9 +397,7 @@ function update_from255(color){
       : color_value;
     document.getElementById(color + '-1').value = color_value.length < 1
       ? 0
-      : core_round({
-          'number': color_value / 255,
-        });
+      : color_value / 255;
 
     update_hex();
 }
@@ -443,9 +441,7 @@ function update_fromhex(){
 
 function update_fromslider(color){
     const color_value = document.getElementById(color).value;
-    document.getElementById(color + '-1').value = core_round({
-      'number': color_value / 255,
-    });
+    document.getElementById(color + '-1').value = color_value / 255;
     document.getElementById(color + '-255').value = color_value;
 
     update_hex();
