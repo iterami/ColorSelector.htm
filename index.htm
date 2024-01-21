@@ -6,22 +6,22 @@
 
 <table class=right>
   <tr id=display-hex>
-    <td><input id=color-random type=button value="Hex [X]">
-    <td><input id=hex-color type=color><input id=grayscale type=button value="Grayscale [Y]">
-    <td><input id=darken type=button value="Darken [K]"><input id=lighten type=button value="Lighten [L]">
+    <td><button id=color-random type=button>Hex [X]</button>
+    <td><input id=hex-color type=color><button id=grayscale type=button>Grayscale [Y]</button>
+    <td><button id=darken type=button>Darken [K]</button><button id=lighten type=button>Lighten [L]</button>
     <td><input id=hex maxlength=6 type=text>
   <tr id=display-red>
-    <td><input id=red-random type=button value="Red [R]">
+    <td><button id=red-random type=button>Red [R]</button>
     <td><input id=red max=255 min=0 type=range>
     <td><input id=red-255 max=255 min=0 step=any type=number>
     <td><input id=red-1 max=1 min=0 step=any type=number>
   <tr id=display-green>
-    <td><input id=green-random type=button value="Green [G]">
+    <td><button id=green-random type=button>Green [G]</button>
     <td><input id=green max=255 min=0 type=range>
     <td><input id=green-255 max=255 min=0 step=any type=number>
     <td><input id=green-1 max=1 min=0 step=any type=number>
   <tr id=display-blue>
-    <td><input id=blue-random type=button value="Blue [U]">
+    <td><button id=blue-random type=button>Blue [U]</button>
     <td><input id=blue max=255 min=0 type=range>
     <td><input id=blue-255 max=255 min=0 step=any type=number>
     <td><input id=blue-1 max=1 min=0 step=any type=number>
@@ -29,9 +29,9 @@
     <td id=display-background><input id=wcag-background type=color>
     <td id=wcag-text-normal>Normal Text
     <td id=wcag-text-normal-result style="background:#000">
-    <td rowspan=2><input id=wcag-background-use type=button value="Background [N]"><br>
-      <input id=wcag type=button value="Switch [S]"><br>
-      <input id=wcag-foreground-use type=button value="Foreground [O]">
+    <td rowspan=2><button id=wcag-background-use type=button>Background [N]</button><br>
+      <button id=wcag type=button>Switch [S]</button><br>
+      <button id=wcag-foreground-use type=button>Foreground [O]</button>
   <tr>
     <td id=display-foreground><input id=wcag-foreground type=color>
     <td class=big id=wcag-text-large>Large Text
