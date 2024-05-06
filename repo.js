@@ -501,12 +501,12 @@ function update_wcag(){
 
     const background = document.getElementById('wcag-background').value;
     const foreground = document.getElementById('wcag-foreground').value;
-    const text_large = document.getElementById('wcag-text-large');
-    text_large.style.backgroundColor = background;
-    text_large.style.color = foreground;
-    const text_normal = document.getElementById('wcag-text-normal');
-    text_normal.style.backgroundColor = background;
-    text_normal.style.color = foreground;
+    const text_large = document.getElementById('wcag-text-large').style;
+    text_large.backgroundColor = background;
+    text_large.color = foreground;
+    const text_normal = document.getElementById('wcag-text-normal').style;
+    text_normal.backgroundColor = background;
+    text_normal.color = foreground;
 
     if(core_storage_data['background-table']){
         document.getElementById('display-background').style.backgroundColor = background;
