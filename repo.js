@@ -1,7 +1,7 @@
 'use strict';
 
 function calculate_wcag(source, offset){
-    source = document.getElementById(source).value;
+    source = core_elements[source].value;
     const math = Number.parseInt(
       source.length === 4
         ? source[offset / 2] + source[offset / 2]
@@ -21,7 +21,7 @@ function calculate_wcag(source, offset){
 }
 
 function darken_lighten(change){
-    const hex = document.getElementById('hex').value;
+    const hex = core_elements['hex'].value;
 
     let blue = Number.parseInt(
       hex.length === 3
@@ -115,15 +115,15 @@ function darken_lighten(change){
       ) * 255
     );
 
-    document.getElementById('red-255').value =
+    core_elements['red-255'].value =
       (red < 0 || red > 255)
         ? 0
         : red;
-    document.getElementById('green-255').value =
+    core_elements['green-255'].value =
       (green < 0 || green > 255)
         ? 0
         : green;
-    document.getElementById('blue-255').value =
+    core_elements['blue-255'].value =
       (blue < 0 || blue > 255)
         ? 0
         : blue;
@@ -164,11 +164,11 @@ function random_color(color){
     color = color || 'hex';
 
     if(color === 'hex'){
-        document.getElementById(color).value = core_random_hex();
+        core_elements[color].value = core_random_hex();
         update_fromhex();
 
     }else{
-        document.getElementById(color).value = core_random_integer({
+        core_elements[color].value = core_random_integer({
           'max': 256,
         });
         update_fromslider(color);
@@ -196,8 +196,8 @@ function repo_init(){
         },
         'hex-color': {
           'oninput': function(){
-              document.getElementById('hex').value =
-                document.getElementById('hex-color').value.substring(
+              core_elements['hex'].value =
+                core_elements['hex-color'].value.substring(
                   1,
                   7
                 );
@@ -271,7 +271,7 @@ function repo_init(){
         },
         'KeyX': {
           'todo': function(event){
-              document.getElementById('hex').value = core_random_hex();
+              core_elements['hex'].value = core_random_hex();
               update_fromhex();
           },
         },
@@ -287,10 +287,35 @@ function repo_init(){
       'storage-menu': '<table><tr><td><input id=background-page type=checkbox><td>Page Background Color'
         +  '<tr><td><input id=background-table type=checkbox><td>Table Background Color</table>',
       'title': 'ColorSelector.htm',
+      'ui-elements': [
+        'blue',
+        'blue-1',
+        'blue-255',
+        'display-background',
+        'display-blue',
+        'display-foreground',
+        'display-green',
+        'display-hex',
+        'display-red',
+        'green',
+        'green-1',
+        'green-255',
+        'hex',
+        'hex-color',
+        'red',
+        'red-1',
+        'red-255',
+        'wcag-background',
+        'wcag-foreground',
+        'wcag-text-large',
+        'wcag-text-large-result',
+        'wcag-text-normal',
+        'wcag-text-normal-result',
+      ],
     });
 
-    document.getElementById('wcag-background').value = '#000000';
-    document.getElementById('wcag-foreground').value = '#ffffff';
+    core_elements['wcag-background'].value = '#000000';
+    core_elements['wcag-foreground'].value = '#ffffff';
     update_wcag();
 
     const colors = [
@@ -304,17 +329,17 @@ function repo_init(){
             random_color(id.substring(0, id.indexOf('-')));
         };
 
-        document.getElementById(colors[color]).oninput = function(){
+        core_elements[colors[color]].oninput = function(){
             update_fromslider(this.id);
         };
 
-        document.getElementById(colors[color] + '-1').oninput = function(){
+        core_elements[colors[color] + '-1'].oninput = function(){
             const id = this.id;
             update_from1(id.substring(0, id.indexOf('-')));
             update_hex();
         };
 
-        document.getElementById(colors[color] + '-255').oninput = function(){
+        core_elements[colors[color] + '-255'].oninput = function(){
             const id = this.id;
             update_from255(id.substring(0, id.indexOf('-')));
             update_hex();
@@ -326,19 +351,15 @@ function repo_init(){
 }
 
 function set_grayscale(){
-    const blue_element = document.getElementById('blue');
-    const green_element = document.getElementById('green');
-    const red_element = document.getElementById('red');
-
-    const blue = Number.parseInt(blue_element.value, 10);
-    const green = Number.parseInt(green_element.value, 10);
-    const red = Number.parseInt(red_element.value, 10);
+    const blue = Number.parseInt(core_elements['blue'].value, 10);
+    const green = Number.parseInt(core_elements['green'].value, 10);
+    const red = Number.parseInt(core_elements['red'].value, 10);
 
     const average = (blue + green + red) / 3;
 
-    blue_element.value = average;
-    green_element.value = average;
-    red_element.value = average;
+    core_elements['blue'].value = average;
+    core_elements['green'].value = average;
+    core_elements['red'].value = average;
 
     update_fromslider('blue');
     update_fromslider('green');
@@ -346,20 +367,20 @@ function set_grayscale(){
 }
 
 function update_display(){
-    const blue = Number.parseInt(document.getElementById('blue').value, 10);
-    const green = Number.parseInt(document.getElementById('green').value, 10);
-    const red = Number.parseInt(document.getElementById('red').value, 10);
+    const blue = Number.parseInt(core_elements['blue'].value, 10);
+    const green = Number.parseInt(core_elements['green'].value, 10);
+    const red = Number.parseInt(core_elements['red'].value, 10);
     const hex_backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')'
-    const hex_value = '#' + document.getElementById('hex').value;
+    const hex_value = '#' + core_elements['hex'].value;
 
-    document.getElementById('hex-color').value = hex_value;
+    core_elements['hex-color'].value = hex_value;
     document.title = hex_value + ' r' + red + ' g' + green + ' b' + blue + ' - ' + core_repo_title;
 
     if(core_storage_data['background-table']){
-        document.getElementById('display-blue').style.backgroundColor = 'rgb(0,0,' + blue + ')';
-        document.getElementById('display-green').style.backgroundColor = 'rgb(0,' + green + ',0)';
-        document.getElementById('display-hex').style.backgroundColor = hex_backgroundColor;
-        document.getElementById('display-red').style.backgroundColor = 'rgb(' + red + ',0,0)';
+        core_elements['display-blue'].style.backgroundColor = 'rgb(0,0,' + blue + ')';
+        core_elements['display-green'].style.backgroundColor = 'rgb(0,' + green + ',0)';
+        core_elements['display-hex'].style.backgroundColor = hex_backgroundColor;
+        core_elements['display-red'].style.backgroundColor = 'rgb(' + red + ',0,0)';
     }
     if(core_storage_data['background-page']){
         document.body.style.backgroundColor = hex_backgroundColor;
@@ -367,7 +388,7 @@ function update_display(){
 }
 
 function update_from1(color){
-    const color_element = document.getElementById(color + '-1');
+    const color_element = core_elements[color + '-1'];
     let color_value = color_element.value;
     if(Number.isNaN(color_value)
       || color_value < 0
@@ -377,13 +398,13 @@ function update_from1(color){
     }
 
     color_value = Math.round(color_value * 255);
-    document.getElementById(color).value = color_value;
-    document.getElementById(color + '-255').value = color_value;
+    core_elements[color].value = color_value;
+    core_elements[color + '-255'].value = color_value;
     update_hex();
 }
 
 function update_from255(color){
-    const color_element = document.getElementById(color + '-255');
+    const color_element = core_elements[color + '-255'];
     let color_value = color_element.value;
     if(Number.isNaN(color_value)
       || color_value < 0
@@ -392,10 +413,10 @@ function update_from255(color){
     }
 
     color_value = color_element.value;
-    document.getElementById(color).value = color_value.length < 1
+    core_elements[color].value = color_value.length < 1
       ? 0
       : color_value;
-    document.getElementById(color + '-1').value = color_value.length < 1
+    core_elements[color + '-1'].value = color_value.length < 1
       ? 0
       : color_value / 255;
 
@@ -403,28 +424,28 @@ function update_from255(color){
 }
 
 function update_fromhex(){
-    const hex = document.getElementById('hex').value;
+    const hex = core_elements['hex'].value;
 
     if(hex.length !== 3
       && hex.length !== 6){
         return;
     }
 
-    document.getElementById('blue-255').value =
+    core_elements['blue-255'].value =
       Number.parseInt(
         hex.length === 3
           ? hex.substring(2, 3) + hex.substring(2, 3)
           : hex.substring(4, 6),
         16
       );
-    document.getElementById('green-255').value =
+    core_elements['green-255'].value =
       Number.parseInt(
         hex.length === 3
           ? hex.substring(1, 2) + hex.substring(1, 2)
           : hex.substring(2, 4),
         16
       );
-    document.getElementById('red-255').value =
+    core_elements['red-255'].value =
       Number.parseInt(
         hex.length === 3
           ? hex.substring(0, 1) + hex.substring(0, 1)
@@ -440,19 +461,18 @@ function update_fromhex(){
 }
 
 function update_fromslider(color){
-    const color_value = document.getElementById(color).value;
-    document.getElementById(color + '-1').value = color_value / 255;
-    document.getElementById(color + '-255').value = color_value;
+    core_elements[color + '-1'].value = core_elements[color].value / 255;
+    core_elements[color + '-255'].value = core_elements[color].value;
 
     update_hex();
 }
 
 function update_hex(){
-    const red = Math.max(0, Math.min(Number.parseInt(document.getElementById('red').value, 10), 255));
-    const green = Math.max(0, Math.min(Number.parseInt(document.getElementById('green').value, 10), 255));
-    const blue = Math.max(0, Math.min(Number.parseInt(document.getElementById('blue').value, 10), 255));
+    const red = Math.max(0, Math.min(Number.parseInt(core_elements['red'].value, 10), 255));
+    const green = Math.max(0, Math.min(Number.parseInt(core_elements['green'].value, 10), 255));
+    const blue = Math.max(0, Math.min(Number.parseInt(core_elements['blue'].value, 10), 255));
 
-    document.getElementById('hex').value =
+    core_elements['hex'].value =
       hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
       + hexvalues((green - green % 16) / 16) + hexvalues(green % 16)
       + hexvalues((blue - blue % 16) / 16) + hexvalues(blue % 16);
@@ -478,7 +498,7 @@ function update_wcag(){
       * 10
     ) / 10;
 
-    document.getElementById('wcag-text-normal-result').innerHTML =
+    core_elements['wcag-text-normal-result'].innerHTML =
       wcag_score + ' / 7 = AAA '
       + (wcag_score > 7
         ? 'Passed'
@@ -488,7 +508,7 @@ function update_wcag(){
         ? 'Passed'
         : 'Failed'
       );
-    document.getElementById('wcag-text-large-result').innerHTML =
+    core_elements['wcag-text-large-result'].innerHTML =
       wcag_score + ' / 4.5 = AAA '
       + (wcag_score > 4.5
         ? 'Passed'
@@ -499,33 +519,30 @@ function update_wcag(){
         : 'Failed'
       );
 
-    const background = document.getElementById('wcag-background').value;
-    const foreground = document.getElementById('wcag-foreground').value;
-    const text_large = document.getElementById('wcag-text-large').style;
+    const background = core_elements['wcag-background'].value;
+    const foreground = core_elements['wcag-foreground'].value;
+    const text_large = core_elements['wcag-text-large'].style;
     text_large.backgroundColor = background;
     text_large.color = foreground;
-    const text_normal = document.getElementById('wcag-text-normal').style;
+    const text_normal = core_elements['wcag-text-normal'].style;
     text_normal.backgroundColor = background;
     text_normal.color = foreground;
 
     if(core_storage_data['background-table']){
-        document.getElementById('display-background').style.backgroundColor = background;
-        document.getElementById('display-foreground').style.backgroundColor = foreground;
+        core_elements['display-background'].style.backgroundColor = background;
+        core_elements['display-foreground'].style.backgroundColor = foreground;
     }
 }
 
 function wcag_set(target){
-    document.getElementById('wcag-' + target).value = '#' + document.getElementById('hex').value;
+    core_elements['wcag-' + target].value = '#' + core_elements['hex'].value;
     update_wcag();
 }
 
 function wcag_switch(){
-    const background_element = document.getElementById('wcag-background');
-    const foreground_element = document.getElementById('wcag-foreground');
-
-    const background = background_element.value;
-    background_element.value = foreground_element.value;
-    foreground_element.value = background;
+    const background = core_elements['wcag-background'].value;
+    core_elements['wcag-background'].value = core_elements['wcag-foreground'].value;
+    core_elements['wcag-foreground'].value = background;
 
     update_wcag();
 }
