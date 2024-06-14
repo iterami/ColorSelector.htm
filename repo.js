@@ -540,9 +540,8 @@ function wcag_set(target){
 }
 
 function wcag_switch(){
-    const background = core_elements['wcag-background'].value;
-    core_elements['wcag-background'].value = core_elements['wcag-foreground'].value;
-    core_elements['wcag-foreground'].value = background;
+    [core_elements['wcag-background'].value, core_elements['wcag-foreground'].value]
+      = [core_elements['wcag-foreground'].value, core_elements['wcag-background'].value];
 
     update_wcag();
 }
