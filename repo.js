@@ -232,32 +232,32 @@ function repo_init(){
       },
       'keybinds': {
         'KeyG': {
-          'todo': function(event){
+          'todo': function(){
               random_color('green');
           },
         },
         'KeyK': {
-          'todo': function(event){
+          'todo': function(){
               darken_lighten(-1);
           },
         },
         'KeyL': {
-          'todo': function(event){
+          'todo': function(){
               darken_lighten(1);
           },
         },
         'KeyN': {
-          'todo': function(event){
+          'todo': function(){
               wcag_set('background');
           },
         },
         'KeyO': {
-          'todo': function(event){
+          'todo': function(){
               wcag_set('foreground');
           },
         },
         'KeyR': {
-          'todo': function(event){
+          'todo': function(){
               random_color('red');
           },
         },
@@ -265,12 +265,12 @@ function repo_init(){
           'todo': wcag_switch,
         },
         'KeyU': {
-          'todo': function(event){
+          'todo': function(){
               random_color('blue');
           },
         },
         'KeyX': {
-          'todo': function(event){
+          'todo': function(){
               core_elements['hex'].value = core_random_hex();
               update_fromhex();
           },
