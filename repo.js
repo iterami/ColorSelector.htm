@@ -168,9 +168,7 @@ function random_color(color){
         update_fromhex();
 
     }else{
-        core_elements[color].value = core_random_integer({
-          'max': 256,
-        });
+        core_elements[color].value = core_random_integer(256);
         update_fromslider(color);
     }
 }
