@@ -21,7 +21,7 @@ function calculate_wcag(source, offset){
 }
 
 function darken_lighten(change){
-    const hex = core_elements['hex'].value;
+    const hex = core_elements.hex.value;
 
     let blue = Number.parseInt(
       hex.length === 3
@@ -115,15 +115,15 @@ function darken_lighten(change){
       ) * 255
     );
 
-    core_elements['red-255'].value =
+    core_elements.red_255.value =
       (red < 0 || red > 255)
         ? 0
         : red;
-    core_elements['green-255'].value =
+    core_elements.green_255.value =
       (green < 0 || green > 255)
         ? 0
         : green;
-    core_elements['blue-255'].value =
+    core_elements.blue_255.value =
       (blue < 0 || blue > 255)
         ? 0
         : blue;
@@ -176,7 +176,7 @@ function random_color(color){
 function repo_init(){
     core_repo_init({
       'events': {
-        'color-random': {
+        'color_random': {
           'onclick':  function(){
               random_color();
           },
@@ -192,10 +192,10 @@ function repo_init(){
         'hex': {
           'oninput': update_fromhex,
         },
-        'hex-color': {
+        'hex_color': {
           'oninput': function(){
-              core_elements['hex'].value =
-                core_elements['hex-color'].value.substring(
+              core_elements.hex.value =
+                core_elements.hex_color.value.substring(
                   1,
                   7
                 );
@@ -211,18 +211,18 @@ function repo_init(){
         'wcag': {
           'onclick': wcag_switch,
         },
-        'wcag-background': {
+        'wcag_background': {
           'oninput': update_wcag,
         },
-        'wcag-background-use': {
+        'wcag_background_use': {
           'onclick': function(){
               wcag_set('background');
           },
         },
-        'wcag-foreground': {
+        'wcag_foreground': {
           'oninput': update_wcag,
         },
-        'wcag-foreground-use': {
+        'wcag_foreground_use': {
           'onclick': function(){
               wcag_set('foreground');
           },
@@ -269,7 +269,7 @@ function repo_init(){
         },
         'KeyX': {
           'todo': function(){
-              core_elements['hex'].value = core_random_hex();
+              core_elements.hex.value = core_random_hex();
               update_fromhex();
           },
         },
@@ -278,42 +278,42 @@ function repo_init(){
         },
       },
       'storage': {
-        'background-page': false,
-        'background-table': true,
+        'background_page': false,
+        'background_table': true,
         'hex': '000000',
       },
-      'storage-menu': '<table><tr><td><input id=background-page type=checkbox><td>Page Background Color'
-        +  '<tr><td><input id=background-table type=checkbox><td>Table Background Color</table>',
+      'storage-menu': '<table><tr><td><input id=background_page type=checkbox><td>Page Background Color'
+        +  '<tr><td><input id=background_table type=checkbox><td>Table Background Color</table>',
       'title': 'ColorSelector.htm',
       'ui-elements': [
         'blue',
-        'blue-1',
-        'blue-255',
-        'display-background',
-        'display-blue',
-        'display-foreground',
-        'display-green',
-        'display-hex',
-        'display-red',
+        'blue_1',
+        'blue_255',
+        'display_background',
+        'display_blue',
+        'display_foreground',
+        'display_green',
+        'display_hex',
+        'display_red',
         'green',
-        'green-1',
-        'green-255',
+        'green_1',
+        'green_255',
         'hex',
-        'hex-color',
+        'hex_color',
         'red',
-        'red-1',
-        'red-255',
-        'wcag-background',
-        'wcag-foreground',
-        'wcag-text-large',
-        'wcag-text-large-result',
-        'wcag-text-normal',
-        'wcag-text-normal-result',
+        'red_1',
+        'red_255',
+        'wcag_background',
+        'wcag_foreground',
+        'wcag_text_large',
+        'wcag_text_large_result',
+        'wcag_text_normal',
+        'wcag_text_normal_result',
       ],
     });
 
-    core_elements['wcag-background'].value = '#000000';
-    core_elements['wcag-foreground'].value = '#ffffff';
+    core_elements.wcag_background.value = '#000000';
+    core_elements.wcag_foreground.value = '#ffffff';
     update_wcag();
 
     const colors = [
@@ -322,24 +322,24 @@ function repo_init(){
       'red',
     ];
     for(const color in colors){
-        document.getElementById(colors[color] + '-random').onclick = function(){
+        document.getElementById(colors[color] + '_random').onclick = function(){
             const id = this.id;
-            random_color(id.substring(0, id.indexOf('-')));
+            random_color(id.substring(0, id.indexOf('_')));
         };
 
         core_elements[colors[color]].oninput = function(){
             update_fromslider(this.id);
         };
 
-        core_elements[colors[color] + '-1'].oninput = function(){
+        core_elements[colors[color] + '_1'].oninput = function(){
             const id = this.id;
-            update_from1(id.substring(0, id.indexOf('-')));
+            update_from1(id.substring(0, id.indexOf('_')));
             update_hex();
         };
 
-        core_elements[colors[color] + '-255'].oninput = function(){
+        core_elements[colors[color] + '_255'].oninput = function(){
             const id = this.id;
-            update_from255(id.substring(0, id.indexOf('-')));
+            update_from255(id.substring(0, id.indexOf('_')));
             update_hex();
         };
     }
@@ -349,15 +349,15 @@ function repo_init(){
 }
 
 function set_grayscale(){
-    const blue = Number.parseInt(core_elements['blue'].value, 10);
-    const green = Number.parseInt(core_elements['green'].value, 10);
-    const red = Number.parseInt(core_elements['red'].value, 10);
+    const blue = Number.parseInt(core_elements.blue.value, 10);
+    const green = Number.parseInt(core_elements.green.value, 10);
+    const red = Number.parseInt(core_elements.red.value, 10);
 
     const average = (blue + green + red) / 3;
 
-    core_elements['blue'].value = average;
-    core_elements['green'].value = average;
-    core_elements['red'].value = average;
+    core_elements.blue.value = average;
+    core_elements.green.value = average;
+    core_elements.red.value = average;
 
     update_fromslider('blue');
     update_fromslider('green');
@@ -365,28 +365,28 @@ function set_grayscale(){
 }
 
 function update_display(){
-    const blue = Number.parseInt(core_elements['blue'].value, 10);
-    const green = Number.parseInt(core_elements['green'].value, 10);
-    const red = Number.parseInt(core_elements['red'].value, 10);
+    const blue = Number.parseInt(core_elements.blue.value, 10);
+    const green = Number.parseInt(core_elements.green.value, 10);
+    const red = Number.parseInt(core_elements.red.value, 10);
     const hex_backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')'
-    const hex_value = '#' + core_elements['hex'].value;
+    const hex_value = '#' + core_elements.hex.value;
 
-    core_elements['hex-color'].value = hex_value;
+    core_elements.hex_color.value = hex_value;
     document.title = hex_value + ' r' + red + ' g' + green + ' b' + blue + ' - ' + core_repo_title;
 
-    if(core_storage_data['background-table']){
-        core_elements['display-blue'].style.backgroundColor = 'rgb(0,0,' + blue + ')';
-        core_elements['display-green'].style.backgroundColor = 'rgb(0,' + green + ',0)';
-        core_elements['display-hex'].style.backgroundColor = hex_backgroundColor;
-        core_elements['display-red'].style.backgroundColor = 'rgb(' + red + ',0,0)';
+    if(core_storage_data.background_table){
+        core_elements.display_blue.style.backgroundColor = 'rgb(0,0,' + blue + ')';
+        core_elements.display_green.style.backgroundColor = 'rgb(0,' + green + ',0)';
+        core_elements.display_hex.style.backgroundColor = hex_backgroundColor;
+        core_elements.display_red.style.backgroundColor = 'rgb(' + red + ',0,0)';
     }
-    if(core_storage_data['background-page']){
+    if(core_storage_data.background_page){
         document.body.style.backgroundColor = hex_backgroundColor;
     }
 }
 
 function update_from1(color){
-    const color_element = core_elements[color + '-1'];
+    const color_element = core_elements[color + '_1'];
     let color_value = color_element.value;
     if(globalThis.isNaN(color_value)
       || color_value < 0
@@ -397,12 +397,12 @@ function update_from1(color){
 
     color_value = Math.round(color_value * 255);
     core_elements[color].value = color_value;
-    core_elements[color + '-255'].value = color_value;
+    core_elements[color + '_255'].value = color_value;
     update_hex();
 }
 
 function update_from255(color){
-    const color_element = core_elements[color + '-255'];
+    const color_element = core_elements[color + '_255'];
     let color_value = color_element.value;
     if(globalThis.isNaN(color_value)
       || color_value < 0
@@ -414,7 +414,7 @@ function update_from255(color){
     core_elements[color].value = color_value.length < 1
       ? 0
       : color_value;
-    core_elements[color + '-1'].value = color_value.length < 1
+    core_elements[color + '_1'].value = color_value.length < 1
       ? 0
       : color_value / 255;
 
@@ -422,28 +422,28 @@ function update_from255(color){
 }
 
 function update_fromhex(){
-    const hex = core_elements['hex'].value;
+    const hex = core_elements.hex.value;
 
     if(hex.length !== 3
       && hex.length !== 6){
         return;
     }
 
-    core_elements['blue-255'].value =
+    core_elements.blue_255.value =
       Number.parseInt(
         hex.length === 3
           ? hex.substring(2, 3) + hex.substring(2, 3)
           : hex.substring(4, 6),
         16
       );
-    core_elements['green-255'].value =
+    core_elements.green_255.value =
       Number.parseInt(
         hex.length === 3
           ? hex.substring(1, 2) + hex.substring(1, 2)
           : hex.substring(2, 4),
         16
       );
-    core_elements['red-255'].value =
+    core_elements.red_255.value =
       Number.parseInt(
         hex.length === 3
           ? hex.substring(0, 1) + hex.substring(0, 1)
@@ -459,18 +459,18 @@ function update_fromhex(){
 }
 
 function update_fromslider(color){
-    core_elements[color + '-1'].value = core_elements[color].value / 255;
-    core_elements[color + '-255'].value = core_elements[color].value;
+    core_elements[color + '_1'].value = core_elements[color].value / 255;
+    core_elements[color + '_255'].value = core_elements[color].value;
 
     update_hex();
 }
 
 function update_hex(){
-    const red = Math.max(0, Math.min(Number.parseInt(core_elements['red'].value, 10), 255));
-    const green = Math.max(0, Math.min(Number.parseInt(core_elements['green'].value, 10), 255));
-    const blue = Math.max(0, Math.min(Number.parseInt(core_elements['blue'].value, 10), 255));
+    const red = Math.max(0, Math.min(Number.parseInt(core_elements.red.value, 10), 255));
+    const green = Math.max(0, Math.min(Number.parseInt(core_elements.green.value, 10), 255));
+    const blue = Math.max(0, Math.min(Number.parseInt(core_elements.blue.value, 10), 255));
 
-    core_elements['hex'].value =
+    core_elements.hex.value =
       hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
       + hexvalues((green - green % 16) / 16) + hexvalues(green % 16)
       + hexvalues((blue - blue % 16) / 16) + hexvalues(blue % 16);
@@ -480,14 +480,14 @@ function update_hex(){
 
 function update_wcag(){
     const background_math =
-      (.2126 * calculate_wcag('wcag-background', 2)
-      + .7152 * calculate_wcag('wcag-background', 4)
-      + .0722 * calculate_wcag('wcag-background', 6)
+      (.2126 * calculate_wcag('wcag_background', 2)
+      + .7152 * calculate_wcag('wcag_background', 4)
+      + .0722 * calculate_wcag('wcag_background', 6)
     );
     const foreground_math =
-      (.2126 * calculate_wcag('wcag-foreground', 2)
-      + .7152 * calculate_wcag('wcag-foreground', 4)
-      + .0722 * calculate_wcag('wcag-foreground', 6)
+      (.2126 * calculate_wcag('wcag_foreground', 2)
+      + .7152 * calculate_wcag('wcag_foreground', 4)
+      + .0722 * calculate_wcag('wcag_foreground', 6)
     );
 
     const wcag_score = Math.round(
@@ -496,7 +496,7 @@ function update_wcag(){
       * 10
     ) / 10;
 
-    core_elements['wcag-text-normal-result'].innerHTML =
+    core_elements.wcag_text_normal_result.innerHTML =
       wcag_score + ' / 7 = AAA '
       + (wcag_score > 7
         ? 'Passed'
@@ -506,7 +506,7 @@ function update_wcag(){
         ? 'Passed'
         : 'Failed'
       );
-    core_elements['wcag-text-large-result'].innerHTML =
+    core_elements.wcag_text_large_result.innerHTML =
       wcag_score + ' / 4.5 = AAA '
       + (wcag_score > 4.5
         ? 'Passed'
@@ -517,29 +517,29 @@ function update_wcag(){
         : 'Failed'
       );
 
-    const background = core_elements['wcag-background'].value;
-    const foreground = core_elements['wcag-foreground'].value;
-    const text_large = core_elements['wcag-text-large'].style;
+    const background = core_elements.wcag_background.value;
+    const foreground = core_elements.wcag_foreground.value;
+    const text_large = core_elements.wcag_text_large.style;
     text_large.backgroundColor = background;
     text_large.color = foreground;
-    const text_normal = core_elements['wcag-text-normal'].style;
+    const text_normal = core_elements.wcag_text_normal.style;
     text_normal.backgroundColor = background;
     text_normal.color = foreground;
 
-    if(core_storage_data['background-table']){
-        core_elements['display-background'].style.backgroundColor = background;
-        core_elements['display-foreground'].style.backgroundColor = foreground;
+    if(core_storage_data.background_table){
+        core_elements.display_background.style.backgroundColor = background;
+        core_elements.display_foreground.style.backgroundColor = foreground;
     }
 }
 
 function wcag_set(target){
-    core_elements['wcag-' + target].value = '#' + core_elements['hex'].value;
+    core_elements['wcag_' + target].value = '#' + core_elements.hex.value;
     update_wcag();
 }
 
 function wcag_switch(){
-    [core_elements['wcag-background'].value, core_elements['wcag-foreground'].value]
-      = [core_elements['wcag-foreground'].value, core_elements['wcag-background'].value];
+    [core_elements.wcag_background.value, core_elements.wcag_foreground.value]
+      = [core_elements.wcag_foreground.value, core_elements.wcag_background.value];
 
     update_wcag();
 }
