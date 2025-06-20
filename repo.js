@@ -285,7 +285,7 @@ function repo_init(){
       'storage-menu': '<table><tr><td><input id=background_page type=checkbox><td>Page Background Color'
         +  '<tr><td><input id=background_table type=checkbox><td>Table Background Color</table>',
       'title': 'ColorSelector.htm',
-      'ui-elements': [
+      'ui_elements': [
         'blue',
         'blue_1',
         'blue_255',
