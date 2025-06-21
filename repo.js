@@ -282,7 +282,7 @@ function repo_init(){
         'background_table': true,
         'hex': '000000',
       },
-      'storage-menu': '<table><tr><td><input id=background_page type=checkbox><td>Page Background Color'
+      'storage_menu': '<table><tr><td><input id=background_page type=checkbox><td>Page Background Color'
         +  '<tr><td><input id=background_table type=checkbox><td>Table Background Color</table>',
       'title': 'ColorSelector.htm',
       'ui_elements': [
