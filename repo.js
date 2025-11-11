@@ -1,11 +1,11 @@
 'use strict';
 
 function calculate_wcag(source, offset){
-    source = core_elements[source].value;
+    const value = core_elements[source].value;
     const math = Number.parseInt(
-      source.length === 4
-        ? source[offset / 2] + source[offset / 2]
-        : source.substring(
+      value.length === 4
+        ? value[offset / 2] + value[offset / 2]
+        : value.substring(
           offset - 1,
           offset + 1
         ),
@@ -293,7 +293,6 @@ function repo_init(){
         'display_blue',
         'display_foreground',
         'display_green',
-        'display_hex',
         'display_red',
         'green',
         'green_1',
@@ -368,7 +367,6 @@ function update_display(){
     const blue = Number.parseInt(core_elements.blue.value, 10);
     const green = Number.parseInt(core_elements.green.value, 10);
     const red = Number.parseInt(core_elements.red.value, 10);
-    const hex_backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')'
     const hex_value = '#' + core_elements.hex.value;
 
     core_elements.hex_color.value = hex_value;
@@ -377,11 +375,10 @@ function update_display(){
     if(core_storage_data.background_table){
         core_elements.display_blue.style.backgroundColor = 'rgb(0,0,' + blue + ')';
         core_elements.display_green.style.backgroundColor = 'rgb(0,' + green + ',0)';
-        core_elements.display_hex.style.backgroundColor = hex_backgroundColor;
         core_elements.display_red.style.backgroundColor = 'rgb(' + red + ',0,0)';
     }
     if(core_storage_data.background_page){
-        document.body.style.backgroundColor = hex_backgroundColor;
+        document.body.style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
     }
 }
 
