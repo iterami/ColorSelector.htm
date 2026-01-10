@@ -230,51 +230,51 @@ function repo_init(){
       },
       'keybinds': {
         'KeyG': {
-          'todo': function(){
+          'down': function(){
               random_color('green');
           },
         },
         'KeyK': {
-          'todo': function(){
+          'down': function(){
               darken_lighten(-1);
           },
         },
         'KeyL': {
-          'todo': function(){
+          'down': function(){
               darken_lighten(1);
           },
         },
         'KeyN': {
-          'todo': function(){
+          'down': function(){
               wcag_set('background');
           },
         },
         'KeyO': {
-          'todo': function(){
+          'down': function(){
               wcag_set('foreground');
           },
         },
         'KeyR': {
-          'todo': function(){
+          'down': function(){
               random_color('red');
           },
         },
         'KeyS': {
-          'todo': wcag_switch,
+          'down': wcag_switch,
         },
         'KeyU': {
-          'todo': function(){
+          'down': function(){
               random_color('blue');
           },
         },
         'KeyX': {
-          'todo': function(){
+          'down': function(){
               core_elements.hex.value = core_random_hex();
               update_fromhex();
           },
         },
         'KeyY': {
-          'todo': set_grayscale,
+          'down': set_grayscale,
         },
       },
       'storage': {
