@@ -471,6 +471,10 @@ function update_hex(){
       hexvalues((red - red % 16) / 16) + hexvalues(red % 16)
       + hexvalues((green - green % 16) / 16) + hexvalues(green % 16)
       + hexvalues((blue - blue % 16) / 16) + hexvalues(blue % 16);
+    core_storage_save({
+      'keys': ['hex'],
+      'rebind': false,
+    });
 
     update_display();
 }
