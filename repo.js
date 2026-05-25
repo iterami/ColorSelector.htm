@@ -278,12 +278,8 @@ function repo_init(){
         },
       },
       'storage': {
-        'background_page': false,
-        'background_table': true,
         'hex': '000000',
       },
-      'storage_menu': '<table><tr><td><input id=background_page type=checkbox><td><label for=background_page>Page Background Color</label>'
-        +  '<tr><td><input id=background_table type=checkbox><td><label for=background_table>Table Background Color</label></table>',
       'title': 'ColorSelector.htm',
       'ui_elements': [
         'blue',
@@ -372,14 +368,9 @@ function update_display(){
     core_elements.hex_color.value = hex_value;
     document.title = hex_value + ' r' + red + ' g' + green + ' b' + blue + ' - ' + core_repo_title;
 
-    if(core_storage_data.background_table){
-        core_elements.display_blue.style.backgroundColor = 'rgb(0,0,' + blue + ')';
-        core_elements.display_green.style.backgroundColor = 'rgb(0,' + green + ',0)';
-        core_elements.display_red.style.backgroundColor = 'rgb(' + red + ',0,0)';
-    }
-    if(core_storage_data.background_page){
-        document.body.style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
-    }
+    core_elements.display_blue.style.backgroundColor = 'rgb(0,0,' + blue + ')';
+    core_elements.display_green.style.backgroundColor = 'rgb(0,' + green + ',0)';
+    core_elements.display_red.style.backgroundColor = 'rgb(' + red + ',0,0)';
 }
 
 function update_from1(color){
@@ -527,10 +518,8 @@ function update_wcag(){
     text_normal.backgroundColor = background;
     text_normal.color = foreground;
 
-    if(core_storage_data.background_table){
-        core_elements.display_background.style.backgroundColor = background;
-        core_elements.display_foreground.style.backgroundColor = foreground;
-    }
+    core_elements.display_background.style.backgroundColor = background;
+    core_elements.display_foreground.style.backgroundColor = foreground;
 }
 
 function wcag_set(target){
